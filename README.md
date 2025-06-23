@@ -7,9 +7,41 @@ This repo includes the data-snapshot jobs, server, and frontend for my can colle
 
 See [Steam API documentation](https://developer.valvesoftware.com/wiki/Steam_Web_API#GetGlobalAchievementPercentagesForApp_.28v0001.29). I setup a workflow that calls the Steam API for my *recently played games* and figures out which of those games I played today. You'll find the script in `~/data/steam/`. I schedule the jobs with Windows Task Scheduler since everything is still local.
 
+
+```
+{
+  "date": "2025-06-22",
+  "steam": [
+    {
+      "appid": 1621140,
+      "name": "Clawfish",
+      "minutes_played_today": 38,
+      "minutes_played_total": 38
+    }
+  ]
+}
+```
+
 ### Strava
 
-See [Strava API documentation](https://developers.strava.com/docs/). I setup a similar workflow for Strava that will record my acitvities in a daily snapshot.
+See [Strava API documentation](https://developers.strava.com/docs/). I setup a similar workflow for Strava that will record my acitvities.
+
+```
+{
+  "date": "2025-06-22",
+  "strava": [
+    {
+      "id": 14885386852,
+      "title": "T&T run",
+      "type": "Walk",
+      "metricValue": "2.82",
+      "metricLabel": "km",
+      "time": 45,
+      "date": "2025-06-22T14:11:01Z"
+    }
+  ]
+}
+```
 
 ## Server
 Express server for fetching the daily snapshots. It also hosts the images for my can-collection.
