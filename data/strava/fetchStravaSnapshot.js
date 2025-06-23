@@ -1,0 +1,61 @@
+const fs = require('fs');
+const path = require('path');
+const { getAccessToken } = require('./tokenManager');
+const axios = require('axios');
+
+const NUM_ACTIVITIES_TO_FETCH = 5;
+const SNAPSHOT_DIR = '../snapshots';
+if (!fs.existsSync(SNAPSHOT_DIR)) fs.mkdirSync(SNAPSHOT_DIR);
+
+const todayStr = new Date().toISOString().slice(0, 10);
+const snapshotFile = path.join(SNAPSHOT_DIR, `${todayStr}.json`);
+
+async function fetchStravaActivities() {
+  const accessToken = await getAccessToken();
+
+  const res = await axios.get('https://www.strava.com/api/v3/athlete/activities', {
+    headers: { Authorization: `Bearer ${accessToken}` },
+    params: { per_page: NUM_ACTIVITIES_TO_FETCH },
+  });
+
+  return res.data;
+}
+
+async function updateStravaSnapshot() {
+  // Load existing snapshot or empty
+  let snapshot = {};
+  if (fs.existsSync(snapshotFile)) {
+    try {
+      snapshot = JSON.parse(fs.readFileSync(snapshotFile, 'utf-8'));
+    } catch {
+      snapshot = {};
+    }
+  }
+
+  // Fetch strava activities
+  const activities = await fetchStravaActivities();
+
+  // Map to your format
+  const stravaData = activities
+    .filter(act => act.start_date_local.slice(0, 10) == todayStr) // filter by today's date
+    .map(act => ({
+        id: act.id,
+        title: act.name,
+        type: act.sport_type,
+        metricValue: (act.distance / 1000).toFixed(2), // km
+        metricLabel: 'km',
+        time: Math.trunc(act.elapsed_time / 60), // divide by 60 to get minutes
+        date: act.start_date_local,
+  }));
+
+  // Merge into snapshot
+  snapshot.date = todayStr;        // update date field
+  snapshot.strava = stravaData;    // add or overwrite strava
+
+  // Save back to file
+  fs.writeFileSync(snapshotFile, JSON.stringify(snapshot, null, 2));
+
+  console.log(`✅ Updated strava snapshot in ${snapshotFile}`);
+}
+
+updateStravaSnapshot();

@@ -1,0 +1,4 @@
+*.env
+*/snapshots/
+**/strava_refresh_token.txt
+**/steam-total-history.json
