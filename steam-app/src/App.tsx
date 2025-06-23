@@ -1,4 +1,5 @@
 import ActivityFeed from './components/ActivityFeed';
+import RecentChessGame from './components/LatestChessGame';
 import RecentCansGrid from './components/RecentCans';
 import { useActivityData } from './hooks/useActivityData';
 
@@ -11,6 +12,9 @@ export default function App() {
       </div>
       <div className='w-fit'>
         <RecentCansGrid />
+      </div>
+      <div>
+        <RecentChessGame/>
       </div>
     </main>
 }
