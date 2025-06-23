@@ -1,0 +1,16 @@
+import ActivityFeed from './components/ActivityFeed';
+import RecentCansGrid from './components/RecentCans';
+import { useActivityData } from './hooks/useActivityData';
+
+export default function App() {
+  const data = useActivityData();
+
+  return <main className="p-[1em] grid grid-cols-1 md:grid-cols-[auto_auto] gap-x-[6em] gap-y-[2em] w-fit">
+      <div className='w-fit'>
+        <ActivityFeed data={data} />
+      </div>
+      <div className='w-fit'>
+        <RecentCansGrid />
+      </div>
+    </main>
+}
