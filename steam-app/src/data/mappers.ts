@@ -53,7 +53,7 @@ const STRAVA_ACTIVITY_CONFIG_MAP: Record<string, any> = {
   'ride': { 'emoji': '🚲', color: '#00adee' },
   'swim': { 'emoji': '🏊', color: '#00adee' },
   'hike': { 'emoji': '🥾', color: '#4caf50' },
-  'walk': { 'emoji': '🚶', color: '#4caf50' },
+  'walk': { 'emoji': '🚶', color: '#ff69b4' },
   'gym': { 'emoji': '🏋️', color: '#9c27b0' },
   'yoga': { 'emoji': '🧘', color: '#ff9800' },
   'canoeing': { 'emoji': '🛶', color: '#2196f3' },

@@ -20,7 +20,7 @@ export default function RecentCansGrid() {
 
   return (
     <div className="can-collection w-[200px] h-max">
-      <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl p-[1.5em]">
+      <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-[1.5em]">
         {/* <h2 className="text-s text-center text-blue-300 mb-6 font-mono">Cans</h2> */}
         <div className="grid grid-cols-2 gap-5 items-end">
           {events.map((event, i) => (
