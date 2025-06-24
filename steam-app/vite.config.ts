@@ -7,5 +7,9 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:5000',
     },
+    allowedHosts: [
+      'localhost',  // Allow local development
+      'ben-feed.cc'
+    ]
   },
 });
