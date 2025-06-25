@@ -7,4 +7,5 @@ export interface ActivityEntry {
   source: 'steam' | 'strava' | 'instagram';
   emoji?: string;
   color?: string;
+  [key: string]: any; 
 }

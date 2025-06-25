@@ -1,6 +1,7 @@
 import ActivityFeed from './components/ActivityFeed';
 import RecentChessGame from './components/LatestChessGame';
 import RecentCansGrid from './components/RecentCans';
+import RecentGamePoster from './components/RecentGamePoster';
 import { useActivityData } from './hooks/useActivityData';
 
 export default function App() {
@@ -15,6 +16,9 @@ export default function App() {
       </div>
       <div>
         <RecentChessGame/>
+      </div>
+      <div>
+        <RecentGamePoster data={data}/>
       </div>
     </main>
 }

@@ -8,18 +8,19 @@ export default function ActivityBubble({ entry }: { entry: ActivityEntry }) {
     <div
       className="activity-bubble flex items-center max-w-lg shadow-md rounded-2xl px-4 py-1 mb-1"
       style={{
-        backgroundColor: hexToRgba(color, 0.07),
+        backgroundColor: hexToRgba(color, 0.2),
         // border: `1px solid ${hexToRgba(color, 0.2)}`,
       }}
     >
-      <div className="flex flex-wrap items-center space-x-2" style={{ color }}>
-        <span className="emoji text-xl">{emoji}</span>
-        <span className="title font-semi text-sm">{entry.title}</span>
-        {entry.metricValue !== undefined && (
-          <span className="text-sm text-gray-300">
-            — {entry.metricValue} {entry.metricLabel}
-          </span>
-        )}
+      <div className="items-center space-x-2" style={{ color: 'gray' }}>
+        <a href={entry.url} target='_blank'>
+          <span className="text-sm text-blue-400">[{entry.source}]</span>
+        </a>
+        <span className="title text-sm">{entry.title}</span>
+        <span className="text-sm text-gray-300">
+          {entry.metricValue} {entry.metricLabel} 
+        </span>
+        <span className="emoji text-sm">{emoji}</span>
       </div>
     </div>
   );

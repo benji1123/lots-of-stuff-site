@@ -13,10 +13,12 @@ export function mapSteam(entry: any): ActivityEntry {
     id: entry.appid,
     title: entry.name,
     metricValue: entry.minutes_played_today, // convert minutes to hours
-    metricLabel: 'min played',
+    metricLabel: 'min',
     source: 'steam',
     color: '#9147ff', // twitch purple
-    emoji: '🎮'
+    emoji: '🎮',
+    url: `https://store.steampowered.com/app/${entry.appid}`,
+    gamePosterUrl: `https://cdn.akamai.steamstatic.com/steam/apps/${entry.appid}/header.jpg`,
   };
 }
 
@@ -32,30 +34,33 @@ export function mapSteam(entry: any): ActivityEntry {
     }
  */
 export function mapStrava(entry: any): ActivityEntry {
+  if (entry.type === 'Workout') {
+    entry['type'] = 'Boxing'; // convert Workout to Boxing
+  }
   const metricValue = entry.metricValue > 0 ? entry.metricValue : entry.time
   const metricLabel = entry.metricValue > 0 ? "km" : "min"
   const activityConfig = STRAVA_ACTIVITY_CONFIG_MAP[entry.type.toLowerCase()];
   return {
-    id: entry.appid,
-    title: `${entry.title}`,
+    id: entry.id,
+    title: ``,
     metricValue,
     metricLabel: metricLabel + " " + entry.type.toLowerCase(),
     source: 'strava',
-    color: activityConfig?.color || '#fc4c02', // strava vermillion
+    color: '#0073cf', // activityConfig?.color || '#fc4c02', // strava vermillion
     emoji: activityConfig?.emoji || '🏋️',
+    url: `https://www.strava.com/activities/${entry.id}`
   };
 }
 
 // strava types defined in https://developers.strava.com/docs/reference/#api-models-SportType
 const STRAVA_ACTIVITY_CONFIG_MAP: Record<string, any> = {
-  'workout': { 'emoji': '🥊', color: '#ff0000'},
+  'boxing': { 'emoji': '🥊', color: '#ff0000'},
   'run': { 'emoji': '👟', color: '#ff69b4' },
   'ride': { 'emoji': '🚲', color: '#00adee' },
   'swim': { 'emoji': '🏊', color: '#00adee' },
   'hike': { 'emoji': '🥾', color: '#4caf50' },
-  'walk': { 'emoji': '🚶', color: '#ff69b4' },
+  'walk': { 'emoji': '👟', color: '#ff69b4' },
   'gym': { 'emoji': '🏋️', color: '#9c27b0' },
-  'yoga': { 'emoji': '🧘', color: '#ff9800' },
   'canoeing': { 'emoji': '🛶', color: '#2196f3' },
   'kayaking': { 'emoji': '🛶', color: '#2196f3' },
 }
