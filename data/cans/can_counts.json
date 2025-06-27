@@ -1,0 +1,34 @@
+{
+  "counts": [
+    {
+      "name": "Pocari",
+      "count": 4,
+      "image": "https://api.ben-feed.cc/static/cans/pocari.png"
+    },
+    {
+      "name": "Asahi",
+      "count": 3,
+      "image": "https://api.ben-feed.cc/static/cans/asahi.png"
+    },
+    {
+      "name": "Mitsuya",
+      "count": 2,
+      "image": "https://api.ben-feed.cc/static/cans/mitsuya-cider.png"
+    },
+    {
+      "name": "Sapporo",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/sapporo.png"
+    },
+    {
+      "name": "Strait & Narrow",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/strait.png"
+    },
+    {
+      "name": "Fanta (Pineapple)",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/fanta-pineapple.png"
+    }
+  ]
+}

@@ -50,7 +50,7 @@ app.get('/api/activity', (req, res) => {
  * return the last 10 can events
  */
 app.get('/api/cans/recent', (req, res) => {
-  const filePath = path.join(__dirname, '../data/cans/cans.json');
+  const filePath = path.join(__dirname, '../data/cans/can_counts.json');
 
   if (!fs.existsSync(filePath)) {
     return res.status(404).json({ error: 'Can data file not found' });
@@ -58,15 +58,15 @@ app.get('/api/cans/recent', (req, res) => {
 
   try {
     const raw = fs.readFileSync(filePath, 'utf-8');
-    const data = JSON.parse(raw);
-    const events = data.events || [];
+    const canData = JSON.parse(raw);
+    const cans = canData.counts || [];
 
     // Get the limit from the query string, default to 10, max 20
     const limit = Math.min(parseInt(req.query.limit) || 10, 20);
 
     // Return newest first
-    const recentEvents = events.slice(-limit);
-    res.json(recentEvents);
+    const recentCans = cans.slice(-limit);
+    res.json(recentCans);
   } catch (err) {
     console.error('Error reading can data:', err);
     res.status(500).json({ error: 'Failed to read can data' });
