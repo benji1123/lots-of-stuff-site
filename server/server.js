@@ -4,7 +4,8 @@ const path = require('path');
 const app = express();
 const PORT = 5000;
 
-const snapshotsDir = path.join('../data/snapshots');
+const CANS_FILE_PATH = path.join(__dirname, '../data/cans/can_counts.json');
+const SNAPSHOTS_DIR = path.join('../data/snapshots');
 
 // Helper: get last N dates as strings in YYYY-MM-DD format
 function getLastNDates(n) {
@@ -18,6 +19,8 @@ function getLastNDates(n) {
   return dates;
 }
 
+app.use(express.json());
+
 app.get('/api/activity', (req, res) => {
   // Parse days query param, default to 7
   const days = parseInt(req.query.days) || 7;
@@ -29,7 +32,7 @@ app.get('/api/activity', (req, res) => {
   const combinedData = {};
 
   lastNDates.forEach(dateStr => {
-    const filePath = path.join(snapshotsDir, `${dateStr}.json`);
+    const filePath = path.join(SNAPSHOTS_DIR, `${dateStr}.json`);
     if (fs.existsSync(filePath)) {
       try {
         const raw = fs.readFileSync(filePath, 'utf-8');
@@ -50,14 +53,12 @@ app.get('/api/activity', (req, res) => {
  * return the last 10 can events
  */
 app.get('/api/cans/recent', (req, res) => {
-  const filePath = path.join(__dirname, '../data/cans/can_counts.json');
-
-  if (!fs.existsSync(filePath)) {
+  if (!fs.existsSync(CANS_FILE_PATH)) {
     return res.status(404).json({ error: 'Can data file not found' });
   }
 
   try {
-    const raw = fs.readFileSync(filePath, 'utf-8');
+    const raw = fs.readFileSync(CANS_FILE_PATH, 'utf-8');
     const canData = JSON.parse(raw);
     const cans = canData.counts || [];
 
@@ -72,6 +73,33 @@ app.get('/api/cans/recent', (req, res) => {
     res.status(500).json({ error: 'Failed to read can data' });
   }
 });
+
+/**
+ * change the can-count for a given can
+ */
+app.post('/api/cans/update', (req, res) => {
+  const { name, delta } = req.body;
+
+  if (!name || typeof delta !== 'number') {
+    return res.status(400).json({ error: 'Missing or invalid name/delta' });
+  }
+
+  let data = { counts: [] };
+  if (fs.existsSync(CANS_FILE_PATH)) {
+    data = JSON.parse(fs.readFileSync(CANS_FILE_PATH, 'utf-8'));
+  }
+
+  let can = data.counts.find(c => c.name === name);
+
+  if (!can) {
+    return;
+  } else {
+    can.count = Math.max(0, can.count + delta);
+  }
+  fs.writeFileSync(CANS_FILE_PATH, JSON.stringify(data, null, 2));
+  res.json({ success: true, updated: can });
+});
+
 
 // serve the images and other static files in the /pulbic/ directory
 app.use('/static', express.static(path.join(__dirname, 'public')));
