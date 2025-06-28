@@ -4,7 +4,7 @@ const { getAccessToken } = require('./tokenManager');
 const axios = require('axios');
 
 const NUM_ACTIVITIES_TO_FETCH = 5;
-const SNAPSHOT_DIR = '../snapshots';
+const SNAPSHOT_DIR = path.join(__dirname, '../snapshots');
 if (!fs.existsSync(SNAPSHOT_DIR)) fs.mkdirSync(SNAPSHOT_DIR);
 
 const now = new Date();
@@ -67,4 +67,4 @@ async function updateStravaSnapshot() {
   console.log(`✅ Updated strava snapshot in ${snapshotFile}`);
 }
 
-updateStravaSnapshot();
+module.exports = { updateStravaSnapshot };

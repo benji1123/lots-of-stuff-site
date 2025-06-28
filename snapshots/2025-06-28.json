@@ -1,0 +1,18 @@
+{
+  "date": "2025-06-28",
+  "strava": [
+    {
+      "id": 14937698933,
+      "title": "Box F4 (no partner swap) + Open Gym",
+      "type": "Workout",
+      "metricValue": "0.00",
+      "metricLabel": "km",
+      "time": 120,
+      "date": "2025-06-28T00:30:00Z",
+      "description": "",
+      "url": "https://www.strava.com/activities/14937698933",
+      "elevationGain": 0,
+      "elapsedTime": 7200
+    }
+  ]
+}

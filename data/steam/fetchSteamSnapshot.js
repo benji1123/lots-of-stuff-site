@@ -6,6 +6,7 @@ require('dotenv').config({ path:  path.join(__dirname, '../.env') });
 // Constants
 const HISTORY_FILE = path.join(__dirname, 'steam-total-history.json');
 const SNAPSHOT_DIR = path.join(__dirname, '../snapshots');
+// const SNAPSHOT_DIR = "C:/Users/benji/Desktop/workspace/steamClient/data/snapshots";
 if (!fs.existsSync(SNAPSHOT_DIR)) fs.mkdirSync(SNAPSHOT_DIR);
 
 const STEAM_API_KEY = process.env.STEAM_API_KEY;
@@ -14,7 +15,7 @@ const STEAM_USER_ID = process.env.STEAM_USER_ID;
 const todayStr = new Date().toISOString().split('T')[0];
 const yesterdayStr = new Date(Date.now() - 86400000).toISOString().split('T')[0];
 
-const run = async () => {
+const updateSteamSnapshot = async () => {
   try {
     
     const totalHistory = fs.existsSync(HISTORY_FILE)
@@ -79,4 +80,4 @@ const getSteamData = async () => {
   return res.data.response.games || [];
 };
 
-run();
+module.exports = { updateSteamSnapshot }
