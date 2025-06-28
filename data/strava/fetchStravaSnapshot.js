@@ -2,17 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const { getAccessToken } = require('./tokenManager');
 const axios = require('axios');
+const { getCurrentDate } = require('../utils/utils');
 
 const NUM_ACTIVITIES_TO_FETCH = 5;
 const SNAPSHOT_DIR = path.join(__dirname, '../snapshots');
 if (!fs.existsSync(SNAPSHOT_DIR)) fs.mkdirSync(SNAPSHOT_DIR);
 
-const now = new Date();
-const todayStr = new Date(
-  now.toLocaleString('en-US', { timeZone: 'America/Vancouver' })
-).toISOString().slice(0, 10);
 
-const snapshotFile = path.join(SNAPSHOT_DIR, `${todayStr}.json`);
+const currDate = getCurrentDate();
+const snapshotFile = path.join(SNAPSHOT_DIR, `${currDate}.json`);
 
 async function fetchStravaActivities() {
   const accessToken = await getAccessToken();
@@ -41,7 +39,7 @@ async function updateStravaSnapshot() {
 
   // Map to your format
   const stravaData = activities
-    .filter(act => act.start_date_local.slice(0, 10) == todayStr) // filter by today's date
+    .filter(act => act.start_date_local.slice(0, 10) == currDate) // filter by today's date
     .map(act => ({
       id: act.id,
       title: act.name,
@@ -58,7 +56,7 @@ async function updateStravaSnapshot() {
     }));
 
   // Merge into snapshot
-  snapshot.date = todayStr;        // update date field
+  snapshot.date = currDate;        // update date field
   snapshot.strava = stravaData;    // add or overwrite strava
 
   // Save back to file
