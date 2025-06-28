@@ -52,9 +52,9 @@ export default function RecentCansGrid() {
 
 
   return (
-    <div className="can-collection w-[200px] h-max relative">
+    <div className="can-collection w-[300px] h-max relative">
       <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-[1.5em]">
-        <div className="grid grid-cols-2 gap-5 items-end">
+        <div className="grid grid-cols-3 gap-5 items-end">
           {cans.map((can, i) => (
             <div
               key={i}
@@ -75,6 +75,7 @@ export default function RecentCansGrid() {
             </div>
           ))}
         </div>
+        
         {/* Fixed tooltip beside the grid */}
         <div
           className={`fixed left-[250px] top-[2em] translate-y-1/2 px-3 py-2 bg-black text-white text-[1.5em] rounded shadow transition-opacity z-50 pointer-events-none w-max ${

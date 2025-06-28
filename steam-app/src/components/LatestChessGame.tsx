@@ -3,7 +3,7 @@ import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 
 const USERNAME = 'xsimplybenx'; // Replace with your Chess.com username
-const MOVE_SPEED_MS = 1000; // Speed of move animation in milliseconds
+const MOVE_SPEED_MS = 2000; // Speed of move animation in milliseconds
 
 type PlayerInfo = {
   username: string;
@@ -21,8 +21,10 @@ type GameInfo = {
   pgn: string;
 };
 
+const INITIAL_BOARD_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+
 export default function AnimatedChessGame() {
-  const [currentFen, setCurrentFen] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+  const [currentFen, setCurrentFen] = useState(INITIAL_BOARD_FEN);
   const [moves, setMoves] = useState<string[]>([]);
   const [moveIndex, setMoveIndex] = useState(0);
   const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);

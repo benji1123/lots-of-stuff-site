@@ -12,8 +12,7 @@ export function mapSteam(entry: any): ActivityEntry {
   return {
     id: entry.appid,
     title: entry.name,
-    metricValue: entry.minutes_played_today, // convert minutes to hours
-    metricLabel: 'min',
+    metric: `${entry.minutes_played_today} min`, // convert minutes to hours
     source: 'steam',
     color: '#9147ff', // twitch purple
     emoji: '🎮',
@@ -43,8 +42,7 @@ export function mapStrava(entry: any): ActivityEntry {
   return {
     id: entry.id,
     title: ``,
-    metricValue,
-    metricLabel: metricLabel + " " + entry.type.toLowerCase(),
+    metric: `${metricValue} ${metricLabel} ${entry.type.toLowerCase()}`,
     source: 'strava',
     color: '#0073cf', // activityConfig?.color || '#fc4c02', // strava vermillion
     emoji: activityConfig?.emoji || '🏋️',
