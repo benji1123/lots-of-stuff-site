@@ -2,12 +2,12 @@
   "counts": [
     {
       "name": "Pocari",
-      "count": 4,
+      "count": 6,
       "image": "https://api.ben-feed.cc/static/cans/pocari.png"
     },
     {
       "name": "Asahi",
-      "count": 3,
+      "count": 7,
       "image": "https://api.ben-feed.cc/static/cans/asahi.png"
     },
     {
@@ -21,14 +21,24 @@
       "image": "https://api.ben-feed.cc/static/cans/sapporo.png"
     },
     {
-      "name": "Strait & Narrow",
-      "count": 2,
-      "image": "https://api.ben-feed.cc/static/cans/strait.png"
+      "name": "Heineken",
+      "count": 16,
+      "image": "https://api.ben-feed.cc/static/cans/heineken.png"
     },
     {
       "name": "Fanta (Pineapple)",
-      "count": 1,
+      "count": 2,
       "image": "https://api.ben-feed.cc/static/cans/fanta-pineapple.png"
+    },
+    {
+      "name": "Kona",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/kona.png"
+    },
+    {
+      "name": "UCC",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/ucc-classic.png"
     }
   ]
 }
