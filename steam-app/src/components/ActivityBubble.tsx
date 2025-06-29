@@ -21,6 +21,7 @@ export default function ActivityBubble({ entry }: { entry: ActivityEntry }) {
           {entry.metric}
         </span>
         <span className="emoji text-sm">{emoji}</span>
+        <span className="emoji text-sm">{entry.description}</span>
       </div>
     </div>
   );

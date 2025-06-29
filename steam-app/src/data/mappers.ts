@@ -14,7 +14,7 @@ export function mapSteam(entry: any): ActivityEntry {
     title: entry.name,
     metric: `${entry.minutes_played_today} min`, // convert minutes to hours
     source: 'steam',
-    color: '#9147ff', // twitch purple
+    color: '#0c151a',
     emoji: '🎮',
     url: `https://store.steampowered.com/app/${entry.appid}`,
     gamePosterUrl: `https://cdn.akamai.steamstatic.com/steam/apps/${entry.appid}/header.jpg`,
@@ -44,21 +44,22 @@ export function mapStrava(entry: any): ActivityEntry {
     title: ``,
     metric: `${metricValue} ${metricLabel} ${entry.type.toLowerCase()}`,
     source: 'strava',
-    color: '#0073cf', // activityConfig?.color || '#fc4c02', // strava vermillion
+    color: '#0c151a',
     emoji: activityConfig?.emoji || '🏋️',
-    url: `https://www.strava.com/activities/${entry.id}`
+    url: `https://www.strava.com/activities/${entry.id}`,
+    description: entry.title
   };
 }
 
 // strava types defined in https://developers.strava.com/docs/reference/#api-models-SportType
 const STRAVA_ACTIVITY_CONFIG_MAP: Record<string, any> = {
-  'boxing': { 'emoji': '🥊', color: '#ff0000'},
-  'run': { 'emoji': '👟', color: '#ff69b4' },
-  'ride': { 'emoji': '🚲', color: '#00adee' },
-  'swim': { 'emoji': '🏊', color: '#00adee' },
-  'hike': { 'emoji': '🥾', color: '#4caf50' },
-  'walk': { 'emoji': '👟', color: '#ff69b4' },
-  'gym': { 'emoji': '🏋️', color: '#9c27b0' },
-  'canoeing': { 'emoji': '🛶', color: '#2196f3' },
-  'kayaking': { 'emoji': '🛶', color: '#2196f3' },
+  'boxing': { emoji: '🥊' },
+  'run': { emoji: '👟' },
+  'ride': { emoji: '🚲' },
+  'swim': { emoji: '🏊' },
+  'hike': { emoji: '🥾' },
+  'walk': { emoji: '👟' },
+  'gym': { emoji: '🏋️' },
+  'canoeing': { emoji: '🛶' },
+  'kayaking': { emoji: '🛶' },
 }

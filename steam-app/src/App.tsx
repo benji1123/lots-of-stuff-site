@@ -14,7 +14,7 @@ export default function App() {
       <div className='w-fit'>
         <RecentCansGrid />
       </div>
-      <div>
+      <div className='w-fit'>
         <RecentChessGame/>
       </div>
       <div>

@@ -67,7 +67,7 @@ export default function RecentCansGrid() {
                   src={can.image}
                   className="h-30 object-contain mb-1 block mx-auto"
                 />
-                <button className="absolute bottom-0 right-0 bg-blue-600 text-white text-[1em] px-2 py-[2px] rounded-full shadow"
+                <button className="absolute bottom-0 right-0 bg-[#0c151a] font-bold text-white text-[1em] px-2 py-[2px] rounded-full shadow"
                         onClick = {() => updateCanCount(can.name, 1)}>
                   {can.count}
                 </button>

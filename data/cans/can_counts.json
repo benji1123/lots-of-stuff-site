@@ -7,7 +7,7 @@
     },
     {
       "name": "Asahi",
-      "count": 7,
+      "count": 8,
       "image": "https://api.ben-feed.cc/static/cans/asahi.png"
     },
     {
@@ -39,6 +39,11 @@
       "name": "UCC",
       "count": 1,
       "image": "https://api.ben-feed.cc/static/cans/ucc-classic.png"
+    },
+    {
+      "name": "100 Plus",
+      "count": 3,
+      "image": "https://api.ben-feed.cc/static/cans/100plus.png"
     }
   ]
 }
