@@ -1,27 +1,27 @@
 import { ActivityEntry } from '../data/types';
 
 export default function ActivityBubble({ entry }: { entry: ActivityEntry }) {
-  const emoji = entry.emoji || '❔';
+  const emoji = entry.emoji || '';
   const color = entry.color || '#6b7280'; // default: gray-500
 
   return (
     <div
-      className="activity-bubble flex items-center max-w-lg shadow-md rounded-2xl px-4 py-1 mb-1"
+      className="activity-bubble text-xs flex items-center max-w-lg shadow-md rounded-2xl px-4 py-1 mb-1"
       style={{
         backgroundColor: hexToRgba(color, 0.2),
         // border: `1px solid ${hexToRgba(color, 0.2)}`,
       }}
     >
       <div className="items-center space-x-2" style={{ color: 'gray' }}>
-        <a href={entry.url} target='_blank'>
-          <span className="text-sm text-blue-400">[{entry.source}]</span>
-        </a>
-        <span className="title text-sm">{entry.title}</span>
-        <span className="text-sm text-gray-300">
+        <span className="">[{entry.source}]</span>
+        <span className="text-gray-300">
           {entry.metric}
         </span>
-        <span className="emoji text-sm">{emoji}</span>
-        <span className="emoji text-sm">{entry.description}</span>
+        <span className="emoji">{emoji}</span>
+        <a href={entry.url} target='_blank'>
+          <span className="title text-blue-400">{entry.title}</span>
+        </a>
+        <span className="emoji">{entry.description}</span>
       </div>
     </div>
   );

@@ -12,10 +12,11 @@ export function mapSteam(entry: any): ActivityEntry {
   return {
     id: entry.appid,
     title: entry.name,
-    metric: `${entry.minutes_played_today} min`, // convert minutes to hours
+    metric: `${entry.minutes_played_today}min`,
+    description: `(${Math.floor(entry.minutes_played_total / 60)}h life)`,
     source: 'steam',
     color: '#0c151a',
-    emoji: '🎮',
+    emoji: '🀄',
     url: `https://store.steampowered.com/app/${entry.appid}`,
     gamePosterUrl: `https://cdn.akamai.steamstatic.com/steam/apps/${entry.appid}/header.jpg`,
   };
@@ -41,13 +42,13 @@ export function mapStrava(entry: any): ActivityEntry {
   const activityConfig = STRAVA_ACTIVITY_CONFIG_MAP[entry.type.toLowerCase()];
   return {
     id: entry.id,
-    title: ``,
-    metric: `${metricValue} ${metricLabel} ${entry.type.toLowerCase()}`,
+    title: entry.title,
+    metric: `${metricValue}${metricLabel} ${entry.type.toLowerCase()}`,
     source: 'strava',
     color: '#0c151a',
     emoji: activityConfig?.emoji || '🏋️',
     url: `https://www.strava.com/activities/${entry.id}`,
-    description: entry.title
+    description: entry.description
   };
 }
 
