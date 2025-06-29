@@ -3,14 +3,7 @@ import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 
 const USERNAME = 'xsimplybenx'; // Replace with your Chess.com username
-const MOVE_SPEED_MS = 2000; // Speed of move animation in milliseconds
-
-type PlayerInfo = {
-  username: string;
-  result: string;
-  rating?: number;
-  "@id": string;
-};
+const MOVE_SPEED_MS = 100; // Speed of move animation in milliseconds
 
 type GameInfo = {
   url: string;
@@ -21,7 +14,15 @@ type GameInfo = {
   pgn: string;
 };
 
+type PlayerInfo = {
+  username: string;
+  result: string;
+  rating?: number;
+  "@id": string;
+};
+
 const INITIAL_BOARD_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+const BOARD_WIDTH = 350; // Width of the chessboard in pixels
 
 export default function AnimatedChessGame() {
   const [currentFen, setCurrentFen] = useState(INITIAL_BOARD_FEN);
@@ -79,24 +80,74 @@ export default function AnimatedChessGame() {
     minute: '2-digit'
   });
 
+  // styles for palyer metadata
   const whiteStyles = RESULT_STYLES[gameInfo.white.result] || DEFAULT_STYLE;
   const blackStyles = RESULT_STYLES[gameInfo.black.result] || DEFAULT_STYLE;
 
   return (
-    <div className="max-w-md mx-auto text-white rounded-lg p-4 shadow-lg">
-      <div className="flex flex-col items-center mb-3">
-        <Chessboard 
-          position={currentFen}
-          arePiecesDraggable={false} 
-          boardWidth={280} 
-        />
+    <div className="max-w-2xl mx-auto text-white rounded-lg p-4 shadow-lg">
+      <div className="flex flex-row gap-6">
+        {/* print moves (anchor scroll at bottom of container via flex and flex-col-reverse
+            https://dev.to/hugaidas/anchor-scroll-at-the-bottom-of-the-container-with-dynamic-content-2knj) */}
+        <div
+          id="scoresheet"
+          className={`flex flex-col-reverse min-w-[10em] max-h-[${BOARD_WIDTH}px] bg-black/30 rounded text-xs font-mono flex-1 overflow-y-auto hide-scrollbar`}
+        >
+          <table>
+            <tbody>
+              {Array.from({ length: Math.ceil(moveIndex / 2) }, (_, rowIdx) => (
+                <tr key={rowIdx}>
+                  <td className="pr-2 text-gray-400">{rowIdx + 1}.</td>
+                  <td className={moveIndex === rowIdx * 2 ? "bg-blue-700 text-white rounded px-2" : "px-2"}>
+                    {moves[rowIdx * 2]}
+                  </td>
+                  <td className={moveIndex === rowIdx * 2 + 1 ? "bg-blue-700 text-white rounded px-2" : "px-2"}>
+                    {moves[rowIdx * 2 + 1]}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        {/* animate the chess game */}
+        <div className="flex flex-col mb-3">
+          <Chessboard 
+            position={currentFen}
+            arePiecesDraggable={false} 
+            boardWidth={BOARD_WIDTH}
+            showBoardNotation={true}
+            // mimic Chess.com board: https://react-chessboard.vercel.app/?path=/story/chessboard--styled-board
+            customBoardStyle={{
+              borderRadius: "4px",
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)"
+            }}
+            customDarkSquareStyle={{
+              backgroundColor: "#779952"
+            }}
+            customLightSquareStyle={{
+              backgroundColor: "#edeed1"
+            }}
+          />
+        </div>
       </div>
-      <div className="text-sm space-y-1 px-1">
-        <div><span className={`${whiteStyles.color}`}>White: </span><a href={getProfileUrl(gameInfo.white.username)} target="_blank" className="text-blue-400">{gameInfo.white.username}</a> ({gameInfo.white.rating}) {whiteStyles.emoji}</div>
-        <div><span className={`${blackStyles.color}`}>Black: </span><a href={getProfileUrl(gameInfo.black.username)} target="_blank" className="text-blue-400">{gameInfo.black.username}</a> ({gameInfo.black.rating}) {blackStyles.emoji}</div>
-        <div><span className="text-gray-400"></span>{endDate} <a href={gameInfo.url} target="_blank" className="text-blue-400">(see game)</a></div>
-        <div></div>
-      </div>
+
+      {/* show the player names and results */}
+       <div className="text-xs font-mono my-2">
+            <div>
+              <span className={`${whiteStyles.color}`}>White: </span>
+              <a href={getProfileUrl(gameInfo.white.username)} target="_blank" className="text-blue-400">{gameInfo.white.username}</a>
+              {' '}({gameInfo.white.rating}) {whiteStyles.emoji}
+            </div>
+            <div>
+              <span className={`${blackStyles.color}`}>Black: </span>
+              <a href={getProfileUrl(gameInfo.black.username)} target="_blank" className="text-blue-400">{gameInfo.black.username}</a>
+              {' '}({gameInfo.black.rating}) {blackStyles.emoji}
+            </div>
+            <div>
+              <span className="text-gray-400"></span>{endDate} <a href={gameInfo.url} target="_blank" className="text-blue-400">(see game)</a>
+            </div>
+          </div>
     </div>
   );
 }
