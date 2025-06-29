@@ -1,3 +1,9 @@
+/**
+ * @file mappers.ts
+ * @description This file contains functions to map raw activity data from different sources (Steam, Strava)
+ * to a standardized {@link ActivityEntry} format that is rendered by {@link ActivityBubble}.
+ */
+
 import { ActivityEntry } from './types';
 
 /** example Steam entry

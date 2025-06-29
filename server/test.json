@@ -1,0 +1,39 @@
+{
+  "2025-06-24": {
+    "date": "2025-06-24",
+    "steam": [
+        {
+        "appid": 3489700,
+        "name": "Stellar Blade™",
+        "minutes_played_today": 38,
+        "minutes_played_total": 1840
+      }
+    ],
+    "strava": [
+      {
+        "id": 14906781228,
+        "title": "Stanley Park",
+        "type": "Run",
+        "metricValue": "5.03",
+        "metricLabel": "km",
+        "time": 34,
+        "date": "2025-06-24T17:20:11Z",
+        "description": "",
+        "url": "https://www.strava.com/activities/14906781228",
+        "elevationGain": 0,
+        "elapsedTime": 2096
+      }
+    ]
+  },
+  "2025-06-23": {
+    "date": "2025-06-23",
+    "steam": [
+      {
+        "appid": 3489700,
+        "name": "Stellar Blade™",
+        "minutes_played_today": 38,
+        "minutes_played_total": 1840
+      }
+    ]
+  }
+}
