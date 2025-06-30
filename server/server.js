@@ -7,6 +7,9 @@ const PORT = 5000;
 const CANS_FILE_PATH = path.join(__dirname, "../data/cans/can_counts.json");
 const SNAPSHOTS_DIR = path.join("../data/snapshots");
 
+// put this before routes to suppost JSON in request bodies
+app.use(express.json());
+
 /**
  * Fetch the strava activities for the past N days (defaults to 7).
  * This API does not contain detailled activity info (i.e. description)
@@ -114,6 +117,7 @@ app.get("/api/cans/recent", (req, res) => {
  * change the can-count for a given can
  */
 app.post("/api/cans/update", (req, res) => {
+  console.log(req.body)
   const { name, delta } = req.body;
 
   if (!name || typeof delta !== "number") {
@@ -148,9 +152,9 @@ function getLastNDates(n) {
   return dates;
 }
 
-app.use(express.json());
 // serve the images and other static files in the /pulbic/ directory
 app.use("/static", express.static(path.join(__dirname, "public")));
+
 app.listen(PORT, () => {
   console.log(`Backend server running on http://localhost:${PORT}`);
 });
