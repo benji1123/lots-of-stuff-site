@@ -11,12 +11,12 @@ type Props = {
  */
 export default function ActivityList({ date, entries }: Props) {
   return (
-    <div className="activity-list">
+    <div className="activities-for-date">
       {/* Date heading */}
-      <h2 className="text-sm text-gray-400 mb-2">{date}</h2>
+      <h2 className="text-sm text-gray-400">{date}</h2>
 
       {/* Feed-style activity messages */}
-      <div className="space-y-2">
+      <div>
         {entries.length === 0 ? (
           <p className="text-gray-600 text-xs italic">No activity</p>
         ) : (

@@ -2,9 +2,10 @@ import { ActivityEntry } from '../data/types';
 
 type Props = {
   data: Record<string, ActivityEntry[]>;
+  width: number
 };
 
-export default function RecentGamePoster({ data }: Props) {
+export default function RecentGamePoster({ data, width }: Props) {
 
     // Flatten all entries in reverse chronological order
   const sortedDates = Object.keys(data).sort((a, b) => (a > b ? -1 : 1));
@@ -14,9 +15,9 @@ export default function RecentGamePoster({ data }: Props) {
   
 
   return (
-    <div className="activity-feed bg-black text-white overflow-y-scroll hide-scrollbar w-max h-max font-mono">
+    <div className="rounded-md activity-feed bg-black text-white overflow-y-scroll hide-scrollbar w-max h-max font-mono">
       <a href={firstSteam?.url} target='_blank'>
-        <img src={firstSteam?.gamePosterUrl}/>
+        <img width={width} src={firstSteam?.gamePosterUrl}/>
       </a>
     </div>
   );
