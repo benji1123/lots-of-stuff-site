@@ -19,7 +19,7 @@ export function mapSteam(entry: any): ActivityEntry {
     id: entry.appid,
     title: entry.name,
     metric: `${entry.minutes_played_today}min`,
-    description: `(${Math.floor(entry.minutes_played_total / 60)}h life)`,
+    description: `${Math.floor(entry.minutes_played_total)}min all_time`,
     source: 'steam',
     color: '#0c151a',
     emoji: '🀄',
@@ -54,8 +54,29 @@ export function mapStrava(entry: any): ActivityEntry {
     color: '#0c151a',
     emoji: activityConfig?.emoji || '🏋️',
     url: `https://www.strava.com/activities/${entry.id}`,
-    description: entry.description
+    description: `${getRolledUpStatString(entry.activityTotal)}`
   };
+}
+
+/**
+ * return a string that summarizes a Strava (@type ActivityTotal)
+ * https://developers.strava.com/docs/reference/#api-models-ActivityTotal
+ */
+const getRolledUpStatString = (activityTotal: any): string => {
+  if (activityTotal == undefined) {
+    return "";
+  }
+  const stats: String[] = [];
+  if (activityTotal.distance) {
+    stats.push(`${Math.floor(activityTotal.distance / 1000)}km`)
+  }
+  if (activityTotal.elapsed_time) {
+    stats.push(`${Math.floor(activityTotal.elapsed_time / 60)}min`)
+  }
+  if (activityTotal.count) {
+    stats.push(`${activityTotal.count}-activities`)
+  }
+  return stats.join(', ');
 }
 
 // strava types defined in https://developers.strava.com/docs/reference/#api-models-SportType
