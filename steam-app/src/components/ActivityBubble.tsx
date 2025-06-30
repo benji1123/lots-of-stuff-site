@@ -5,15 +5,9 @@ export default function ActivityBubble({ entry }: { entry: ActivityEntry }) {
   const color = entry.color || '#6b7280'; // default: gray-500
 
   return (
-    <div
-      className="activity-bubble text-xs flex items-center max-w-lg rounded-2xl px-4 py-1 mb-1"
-      style={{
-        // backgroundColor: hexToRgba(color, 0.2),
-        // border: `1px solid ${hexToRgba(color, 0.2)}`,
-      }}
-    >
+    <div className="activity-bubble text-xs flex items-center max-w-lg rounded-2xl pl-4">
       <div className="items-center space-x-2" style={{ color: 'gray' }}>
-        <span className="">[{entry.source}]</span>
+        {/* <span className="">[{entry.source}]</span> */}
         <span className="text-gray-300">
           {entry.metric}
         </span>
@@ -27,7 +21,7 @@ export default function ActivityBubble({ entry }: { entry: ActivityEntry }) {
   );
 }
 
-/** to decrease opacity of given color */
+/** since you can't specify alpha for HEX colors */
 function hexToRgba(hex: string, alpha: number) {
   let c = hex.replace('#', '');
   if (c.length === 3) c = c.split('').map(x => x + x).join('');

@@ -1,9 +1,11 @@
 import ActivityFeed from "./components/ActivityFeed";
+import ChessProfile from "./components/ChessProfile";
 import RecentChessGame from "./components/LatestChessGame";
 import RecentCansGrid from "./components/RecentCans";
 import RecentGamePoster from "./components/RecentGamePoster";
 import { useActivityData } from "./hooks/useActivityData";
 
+const CHESS_COM_USERNAME = 'xsimplybenx'
 export default function App() {
   const data = useActivityData();
 
@@ -23,6 +25,7 @@ export default function App() {
         </div>
         <div className="w-fit bg-[#141414] rounded-lg p-[1em]">
           <RecentChessGame />
+          <ChessProfile username={CHESS_COM_USERNAME}/>
         </div>
         <div className="w-fit bg-[#141414] rounded-lg p-[1em]">
           <RecentCansGrid />

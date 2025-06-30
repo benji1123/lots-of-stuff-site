@@ -6,7 +6,7 @@ export function useActivityData() {
   const [data, setData] = useState<Record<string, ActivityEntry[]>>({});
 
   useEffect(() => {
-    fetch('/api/activity?days=7')
+    fetch('/api/activity?days=10')
       .then(res => res.json())
       .then(raw => {
         const mapped: Record<string, ActivityEntry[]> = {};

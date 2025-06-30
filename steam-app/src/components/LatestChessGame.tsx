@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
+import { CHESS_COM_API_HEADERS, DEFAULT_CHESS_GAME } from '../constants';
 
 const USERNAME = 'xsimplybenx'; // Replace with your Chess.com username
 const MOVE_SPEED_MS = 100; // Speed of move animation in milliseconds
@@ -32,15 +33,25 @@ export default function AnimatedChessGame() {
 
   useEffect(() => {
     async function fetchGame() {
-      const archivesRes = await fetch(`https://api.chess.com/pub/player/${USERNAME}/games/archives`);
+      const archivesRes = await fetch(`https://api.chess.com/pub/player/${USERNAME}/games/archives`, {
+        headers: CHESS_COM_API_HEADERS
+      });
       const archiveUrls = await archivesRes.json();
       const latestUrl = archiveUrls.archives.pop();
-      const gamesRes = await fetch(latestUrl);
-      const allGames = (await gamesRes.json()).games;
+      const gamesRes = await fetch(latestUrl, {
+        headers: CHESS_COM_API_HEADERS,
+      });
+      let allGames = (await gamesRes.json()).games;
+
+      if (allGames == undefined) {
+        allGames = [DEFAULT_CHESS_GAME];
+      }
+      console.log(allGames)
 
       if (allGames.length > 0) {
         const game = allGames[allGames.length - 1];
         const chess = new Chess();
+        console.log(game.pgn)
         chess.loadPgn(game.pgn);
         setMoves(chess.history());
         setGameInfo(game);
@@ -69,7 +80,7 @@ export default function AnimatedChessGame() {
     return () => clearTimeout(timer);
   }, [moves, moveIndex, currentFen]);
 
-  if (!gameInfo) return <div className="text-white">Loading chess game...</div>;
+  if (!gameInfo) return <div className="font-mono text-white text-xs p-[1em]">Loading chess game...</div>;
 
   const endDate = new Date(gameInfo.end_time * 1000).toLocaleString([], {
     timeZone: 'America/Vancouver',

@@ -18,7 +18,7 @@ export default function ActivityList({ date, entries }: Props) {
       {/* Feed-style activity messages */}
       <div>
         {entries.length === 0 ? (
-          <p className="text-gray-600 text-xs italic">No activity</p>
+          <p className="text-gray-600 text-xs italic">~</p>
         ) : (
           entries.map(entry => (
             <ActivityBubble

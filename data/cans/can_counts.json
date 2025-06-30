@@ -2,7 +2,7 @@
   "counts": [
     {
       "name": "Pocari",
-      "count": 7,
+      "count": 10,
       "image": "https://api.ben-feed.cc/static/cans/pocari.png"
     },
     {
@@ -39,11 +39,6 @@
       "name": "UCC",
       "count": 1,
       "image": "https://api.ben-feed.cc/static/cans/ucc-classic.png"
-    },
-    {
-      "name": "100 Plus",
-      "count": 3,
-      "image": "https://api.ben-feed.cc/static/cans/100plus.png"
     }
   ]
 }

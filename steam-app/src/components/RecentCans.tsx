@@ -67,7 +67,7 @@ export default function RecentCansGrid() {
                   src={can.image}
                   className="h-30 object-contain mb-1 block mx-auto"
                 />
-                <button className="can-count-badge absolute bottom-0 right-0 bg-black text-[#779952] font-bold text-white text-[1em] px-2 py-[2px] rounded-full shadow"
+                <button className="can-count-badge text-[12px] mt-[1em] w-[30px] h-[18px] bg-[#779952] text-black font-bold rounded-full"
                         onClick = {() => updateCanCount(can.name, 1)}>
                   {can.count}
                 </button>
@@ -77,13 +77,13 @@ export default function RecentCansGrid() {
         </div>
         
         {/* Fixed tooltip beside the grid */}
-        <div
+        {/* <div
           className={`fixed left-[250px] top-[2em] translate-y-1/2 px-3 py-2 bg-black text-white text-[1.5em] rounded shadow transition-opacity z-50 pointer-events-none w-max ${
             hovered ? 'opacity-90' : 'opacity-0'
           }`}
         >
           {hovered}
-        </div>
+        </div> */}
       </div>
     </div>
   );
