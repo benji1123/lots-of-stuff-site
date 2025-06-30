@@ -85,13 +85,13 @@ export default function AnimatedChessGame() {
   const blackStyles = RESULT_STYLES[gameInfo.black.result] || DEFAULT_STYLE;
 
   return (
-    <div className="max-w-2xl mx-auto text-white rounded-lg p-4 shadow-lg">
+    <div className="max-w-2xl mx-auto text-white rounded-lg p-4">
       <div className="flex flex-row gap-6">
         {/* print moves (anchor scroll at bottom of container via flex and flex-col-reverse
             https://dev.to/hugaidas/anchor-scroll-at-the-bottom-of-the-container-with-dynamic-content-2knj) */}
         <div
           id="scoresheet"
-          className={`flex flex-col-reverse min-w-[10em] max-h-[${BOARD_WIDTH}px] bg-black/30 rounded text-xs font-mono flex-1 overflow-y-auto hide-scrollbar`}
+          className={`flex flex-col-reverse min-w-[15em] max-h-[${BOARD_WIDTH}px] bg-[#000000] p-[1em] rounded text-xs font-mono flex-1 overflow-y-auto hide-scrollbar`}
         >
           <table>
             <tbody>
@@ -123,10 +123,10 @@ export default function AnimatedChessGame() {
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)"
             }}
             customDarkSquareStyle={{
-              backgroundColor: "#779952"
+              backgroundColor: "#141414"
             }}
             customLightSquareStyle={{
-              backgroundColor: "#edeed1"
+              backgroundColor: "#779952"
             }}
           />
         </div>

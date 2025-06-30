@@ -6,9 +6,9 @@ export default function ActivityBubble({ entry }: { entry: ActivityEntry }) {
 
   return (
     <div
-      className="activity-bubble text-xs flex items-center max-w-lg shadow-md rounded-2xl px-4 py-1 mb-1"
+      className="activity-bubble text-xs flex items-center max-w-lg rounded-2xl px-4 py-1 mb-1"
       style={{
-        backgroundColor: hexToRgba(color, 0.2),
+        // backgroundColor: hexToRgba(color, 0.2),
         // border: `1px solid ${hexToRgba(color, 0.2)}`,
       }}
     >

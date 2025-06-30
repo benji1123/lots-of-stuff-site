@@ -19,7 +19,7 @@ export function mapSteam(entry: any): ActivityEntry {
     id: entry.appid,
     title: entry.name,
     metric: `${entry.minutes_played_today}min`,
-    description: `${Math.floor(entry.minutes_played_total)}min all_time`,
+    description: `${getFlooredLocaleString(entry.minutes_played_total)}min`,
     source: 'steam',
     color: '#0c151a',
     emoji: '🀄',
@@ -68,15 +68,15 @@ const getRolledUpStatString = (activityTotal: any): string => {
   }
   const stats: String[] = [];
   if (activityTotal.distance) {
-    stats.push(`${Math.floor(activityTotal.distance / 1000)}km`)
+    stats.push(`${getFlooredLocaleString(activityTotal.distance, 1000)}km`)
   }
   if (activityTotal.elapsed_time) {
-    stats.push(`${Math.floor(activityTotal.elapsed_time / 60)}min`)
+    stats.push(`${getFlooredLocaleString(activityTotal.elapsed_time, 60)}min`)
   }
-  if (activityTotal.count) {
-    stats.push(`${activityTotal.count}-activities`)
-  }
-  return stats.join(', ');
+  // if (activityTotal.count) {
+  //   stats.push(`${activityTotal.count}-activities`)
+  // }
+  return stats.join(' ');
 }
 
 // strava types defined in https://developers.strava.com/docs/reference/#api-models-SportType
@@ -91,3 +91,5 @@ const STRAVA_ACTIVITY_CONFIG_MAP: Record<string, any> = {
   'canoeing': { emoji: '🛶' },
   'kayaking': { emoji: '🛶' },
 }
+
+const getFlooredLocaleString = (num: number, divisor: number=1) => Math.floor(num / divisor).toLocaleString()
