@@ -26,11 +26,17 @@ type PlayerInfo = {
 const INITIAL_BOARD_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 const BOARD_WIDTH = 350; // Width of the chessboard in pixels
 
+// initialize a placeholder game since chess.com api is unreliable
+// once my game is fetched, it will replace the placeholder
+const PLACEHOLDER_GAME = new Chess()
+PLACEHOLDER_GAME.loadPgn(DEFAULT_CHESS_GAME.pgn)
+const PLACEHOLDER_MOVES = PLACEHOLDER_GAME.history()
+
 export default function AnimatedChessGame() {
   const [currentFen, setCurrentFen] = useState(INITIAL_BOARD_FEN);
-  const [moves, setMoves] = useState<string[]>([]);
+  const [moves, setMoves] = useState<string[]>(PLACEHOLDER_MOVES);
   const [moveIndex, setMoveIndex] = useState(0);
-  const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);
+  const [gameInfo, setGameInfo] = useState<GameInfo | null>(DEFAULT_CHESS_GAME);
 
   useEffect(() => {
     async function fetchGame() {
@@ -43,12 +49,6 @@ export default function AnimatedChessGame() {
         headers: CHESS_COM_API_HEADERS,
       });
       let allGames = (await gamesRes.json()).games;
-
-      if (allGames == undefined) {
-        allGames = [DEFAULT_CHESS_GAME];
-      }
-      console.log(allGames)
-
       if (allGames.length > 0) {
         const game = allGames[allGames.length - 1];
         const chess = new Chess();

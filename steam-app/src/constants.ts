@@ -18,12 +18,12 @@ export const DEFAULT_CHESS_GAME = {
     username: "hikaru",
     rating: 69,
     result: "win",
-    uuid: "player-uuid-1",
+    '@id': "player-uuid-1",
   },
   black: {
     username: "magnus",
     rating: 420,
     result: "checkmated",
-    uuid: "player-uuid-2",
+    '@id': "player-uuid-2",
   },
 };
