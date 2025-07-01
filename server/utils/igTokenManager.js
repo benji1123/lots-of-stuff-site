@@ -28,7 +28,7 @@ async function getAccessToken() {
   let token = loadToken();
   if (!token || now > token.expiresAt - REFRESH_BUFFER_SECONDS) {
     console.log("🔄 Refreshing Instagram token...");
-    const res = axios.get("https://graph.instagram.com/refresh_access_token", {
+    const res = await axios.get("https://graph.instagram.com/refresh_access_token", {
       params: {
         grant_type: "ig_refresh_token",
         access_token: token?.access_token || process.env.INSTAGRAM_ACCESS_TOKEN,
@@ -40,6 +40,7 @@ async function getAccessToken() {
     };
     saveToken(token);
   }
+  return token.access_token;
 }
 
 module.exports = { getAccessToken };

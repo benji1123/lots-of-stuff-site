@@ -1,3 +1,4 @@
+**/.secrets/
 *.env
 */snapshots/
 **/strava_refresh_token.txt

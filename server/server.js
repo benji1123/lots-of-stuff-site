@@ -2,6 +2,9 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const app = express();
+
+const instagramRoutes = require('./routes/instagram')
+
 const PORT = 5000;
 
 const CANS_FILE_PATH = path.join(__dirname, "../data/cans/can_counts.json");
@@ -9,6 +12,9 @@ const SNAPSHOTS_DIR = path.join("../data/snapshots");
 
 // put this before routes to suppost JSON in request bodies
 app.use(express.json());
+
+// routes in external files
+app.use(instagramRoutes)
 
 /**
  * Fetch the strava activities for the past N days (defaults to 7).
