@@ -74,7 +74,7 @@ app.get("/api/activity", (req, res) => {
       combinedData[dateStr] = [];
     }
   });
-  console.log(JSON.stringify(combinedData));
+  console.log(`returning activities`);
   res.json(combinedData);
 });
 

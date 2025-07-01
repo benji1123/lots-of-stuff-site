@@ -1,3 +1,12 @@
+/**
+ * Instagram API provides a long-living token that lasts for 60-days.
+ * You need to continuously exchange this token for a short-living 1-hour
+ * tokens to call other instgram APIs (i.e. me/media).
+ * 
+ * This token manager will do the above while ensuring the long-living token
+ * does not expire by requesting a new one when it is within <10 days of expiry.
+ */
+
 const fs = require("fs");
 const path = require("path");
 const axios = require("axios");

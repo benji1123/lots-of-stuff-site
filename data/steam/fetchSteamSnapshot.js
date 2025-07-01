@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const { getCurrentDate } = require('../utils/utils');
 require('dotenv').config({ path:  path.join(__dirname, '../.env') });
 
 // Constants
@@ -12,7 +13,7 @@ if (!fs.existsSync(SNAPSHOT_DIR)) fs.mkdirSync(SNAPSHOT_DIR);
 const STEAM_API_KEY = process.env.STEAM_API_KEY;
 const STEAM_USER_ID = process.env.STEAM_USER_ID;
 
-const todayStr = new Date().toISOString().split('T')[0];
+const todayStr = getCurrentDate();
 const yesterdayStr = new Date(Date.now() - 86400000).toISOString().split('T')[0];
 
 const updateSteamSnapshot = async () => {

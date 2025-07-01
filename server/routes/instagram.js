@@ -13,7 +13,8 @@ router.get('/api/instagram/posts', async (req, res) => {
         const cached = cacheManager.loadCache(CACHE_NAME_INSTAGAM)
         if (cached) {
             console.log('returning IG posts from cache')
-            return cached;
+            res.json(cached);
+            return;
         }
         console.log('[instagram] cache is null or expired - fetching from Instagram API...')
         const accessToken = await tokenManager.getAccessToken()
@@ -25,8 +26,8 @@ router.get('/api/instagram/posts', async (req, res) => {
             }
         })
         // cache the response
-        cacheManager.saveCache(CACHE_NAME_INSTAGAM, data)
-        res.json(data)
+        cacheManager.saveCache(CACHE_NAME_INSTAGAM, data.data)
+        res.json(data.data)
     } catch (error) {
         console.log('Error fetching instagram posts: ', error.message)
         res.status(500).json({ error: 'Failed to fetch instagram posts' })
