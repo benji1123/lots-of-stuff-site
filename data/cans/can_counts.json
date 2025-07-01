@@ -7,7 +7,7 @@
     },
     {
       "name": "Asahi",
-      "count": 8,
+      "count": 9,
       "image": "https://api.ben-feed.cc/static/cans/asahi.png"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "name": "Heineken",
-      "count": 16,
+      "count": 15,
       "image": "https://api.ben-feed.cc/static/cans/heineken.png"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "name": "UCC",
-      "count": 1,
+      "count": 3,
       "image": "https://api.ben-feed.cc/static/cans/ucc-classic.png"
     }
   ]

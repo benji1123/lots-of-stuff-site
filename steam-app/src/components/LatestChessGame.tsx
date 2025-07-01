@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 import { CHESS_COM_API_HEADERS, DEFAULT_CHESS_GAME } from '../constants';
+import Icon from './Icon';
 
 const USERNAME = 'xsimplybenx'; // Replace with your Chess.com username
 const MOVE_SPEED_MS = 100; // Speed of move animation in milliseconds
@@ -97,6 +98,7 @@ export default function AnimatedChessGame() {
 
   return (
     <div className="max-w-2xl mx-auto text-white rounded-lg p-4">
+      <Icon imageUrl='https://img.icons8.com/?size=100&id=NS6O9zcKcKeX&format=png&color=000000'/>
       <div className="flex flex-row gap-6">
         {/* print moves (anchor scroll at bottom of container via flex and flex-col-reverse
             https://dev.to/hugaidas/anchor-scroll-at-the-bottom-of-the-container-with-dynamic-content-2knj) */}

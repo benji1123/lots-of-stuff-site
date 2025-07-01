@@ -53,8 +53,8 @@ export default function RecentCansGrid() {
 
   return (
     <div className="can-collection h-max">
-      <div className="backdrop-blur-sm rounded-2xl p-[1.5em]">
-        <div className="grid grid-cols-3 gap-5 items-end">
+      <div className="rounded-2xl p-1">
+        <div className="grid grid-cols-3 gap-3 items-end">
           {cans.map((can, i) => (
             <div
               key={i}

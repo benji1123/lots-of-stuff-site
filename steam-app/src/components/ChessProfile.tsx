@@ -51,7 +51,7 @@ export default function ChessProfile({ username }: Props) {
     }, []) // the '[]' means this hook only runs when ChessProfile is mounted (as we don't need to update player data)
 
     if (!profile || !profile.username) {
-        return <div className="text-gray-400">Loading profile...</div>;
+        return <div className="text-gray-400 text-xs font-mono">Loading profile...</div>;
     }
 
     return (

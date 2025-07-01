@@ -11,22 +11,19 @@ type Props = {
  */
 export default function ActivityList({ date, entries }: Props) {
   return (
+    entries.length == 0 ? <div></div> :
     <div className="activities-for-date">
       {/* Date heading */}
-      <h2 className="text-sm text-gray-400">{date}</h2>
+      <div className="text-xs text-green-400 mt-4 mb-1">{date}</div>
 
       {/* Feed-style activity messages */}
       <div>
-        {entries.length === 0 ? (
-          <p className="text-gray-600 text-xs italic">~</p>
-        ) : (
-          entries.map(entry => (
+          {entries.map(entry => (
             <ActivityBubble
               key={`${entry.source}-${entry.id}-${date}`}
               entry={entry}
             />
-          ))
-        )}
+          ))}
       </div>
     </div>
   );

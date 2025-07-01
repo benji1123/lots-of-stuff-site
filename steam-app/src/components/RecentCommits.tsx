@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import Icon from "./Icon";
 
-const MAX_COMMITS = 7;
-const SHA_LENGTH = 20;
+const MAX_COMMITS = 5;
+const SHA_LENGTH = 5;
 
 type Commit = {
   repo: string;
@@ -26,10 +27,11 @@ export default function GitHubCommits() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="p-4 text-white font-mono text-xs max-w-[20em] max-h-[55em] overflow-y-auto hide-scrollbar">
-      <ul className="space-y-2">
+    <div className="text-white font-mono text-xs max-w-[20em] max-h-[55em] overflow-y-auto hide-scrollbar">
+      <ul className="space-y-[0.5em]">
+        <Icon imageUrl='https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000'/>
         {commits.map((commit) => (
-          <li key={commit.sha} className="bg-zinc-900 p-3 rounded shadow">
+          <li key={commit.sha} className="bg-zinc-900 py-1 px-[0.5em] rounded shadow">
             <div className="text-green-600">{commit.sha.slice(0,SHA_LENGTH)}</div>
             <a
               href={commit.url}

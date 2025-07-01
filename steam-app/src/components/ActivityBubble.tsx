@@ -5,10 +5,10 @@ export default function ActivityBubble({ entry }: { entry: ActivityEntry }) {
   const color = entry.color || '#6b7280'; // default: gray-500
 
   return (
-    <div className="activity-bubble text-xs flex items-center max-w-lg rounded-2xl pl-4">
-      <div className="items-center space-x-2" style={{ color: 'gray' }}>
+    <div className="activity-bubble text-xs flex items-center rounded-2xl max-w-[20em] ">
+      <div className="items-center space-x-1" style={{ color: 'gray' }}>
         {/* <span className="">[{entry.source}]</span> */}
-        <span className="text-gray-300">
+        <span className="metric text-gray-300 font-bold">
           {entry.metric}
         </span>
         <span className="emoji">{emoji}</span>

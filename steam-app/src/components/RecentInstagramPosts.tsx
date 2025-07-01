@@ -21,7 +21,10 @@ export default function RecentInstagramPosts() {
     }, []);
 
     return (
-        <div className="ig-posts flex gap-[1em] items-end text-white font-mono">
+        // small screens: 1-col
+        // medium screens: 4-cols
+        // large screens: 10-cols
+        <div className="ig-posts grid grid-cols-2 md:grid-cols-4 lg:grid-cols-10 gap-[1em] items-end text-white font-mono">
             {posts.map((post, i) => (
                 <div key={i} className='text-xs max-w-[150px]'>
                     <a href={post.permalink} target="_blank">
@@ -36,4 +39,5 @@ export default function RecentInstagramPosts() {
 }
 
 const CAPTION_CHAR_LIMIT = 30;
-const getCaption = (post: InstagramPost) => post.caption ? post.caption.slice(0, CAPTION_CHAR_LIMIT) + "..." : "no cap"
+const DEFAULT_CAPTION = 'no cap'
+const getCaption = (post: InstagramPost) => post.caption ? post.caption.slice(0, CAPTION_CHAR_LIMIT) : DEFAULT_CAPTION
