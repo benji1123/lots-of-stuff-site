@@ -16,7 +16,6 @@ export default function RecentInstagramPosts() {
         fetch('/api/instagram/posts')
             .then(res => res.json())
             .then(setPosts)
-            .then(posts => console.log(posts))
             .catch(err => console.log('failed to fetch IG posts: ', err))
     }, []);
 
@@ -28,7 +27,7 @@ export default function RecentInstagramPosts() {
             {posts.map((post, i) => (
                 <div key={i} className='text-xs max-w-[150px]'>
                     <a href={post.permalink} target="_blank">
-                        <img src={post.media_url} width={150} className='rounded-lg mb-1'></img>
+                        <img src={post.media_url} width={150} className='rounded-lg mb-1 shadow-sm shadow-black/30'></img>
                         <div>{post.timestamp.slice(0,16)}</div>
                         <div className="truncate mr-5">{getCaption(post)}</div>
                     </a>

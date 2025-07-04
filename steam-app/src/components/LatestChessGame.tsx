@@ -97,31 +97,31 @@ export default function AnimatedChessGame() {
   const blackStyles = RESULT_STYLES[gameInfo.black.result] || DEFAULT_STYLE;
 
   return (
-    <div className="max-w-2xl mx-auto text-white rounded-lg p-4">
-      <Icon imageUrl='https://img.icons8.com/?size=100&id=NS6O9zcKcKeX&format=png&color=000000'/>
+    <div className="max-w-2xl mx-auto text-white rounded-lg">
       <div className="flex flex-row gap-6">
         {/* print moves (anchor scroll at bottom of container via flex and flex-col-reverse
             https://dev.to/hugaidas/anchor-scroll-at-the-bottom-of-the-container-with-dynamic-content-2knj) */}
-        <div
-          id="scoresheet"
-          className={`flex flex-col-reverse min-w-[15em] max-h-[${BOARD_WIDTH}px] bg-[#000000] p-[1em] rounded text-xs font-mono flex-1 overflow-y-auto hide-scrollbar`}
-        >
-          <table>
-            <tbody>
-              {Array.from({ length: Math.ceil(moveIndex / 2) }, (_, rowIdx) => (
-                <tr key={rowIdx}>
-                  <td className="pr-2 text-gray-400">{rowIdx + 1}.</td>
-                  <td className={moveIndex === rowIdx * 2 ? "bg-blue-700 text-white rounded px-2" : "px-2"}>
-                    {moves[rowIdx * 2]}
-                  </td>
-                  <td className={moveIndex === rowIdx * 2 + 1 ? "bg-blue-700 text-white rounded px-2" : "px-2"}>
-                    {moves[rowIdx * 2 + 1]}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+          <div
+            id="scoresheet"
+            className={`flex flex-col-reverse min-w-[15em] max-h-[${BOARD_WIDTH}px] bg-[#000000] p-[1em]
+                        rounded-xl text-xs font-mono flex-1 overflow-y-auto hide-scrollbar`}
+          >
+            <table>
+              <tbody>
+                {Array.from({ length: Math.ceil(moveIndex / 2) }, (_, rowIdx) => (
+                  <tr key={rowIdx}>
+                    <td className="pr-2 text-gray-400">{rowIdx + 1}.</td>
+                    <td className={moveIndex === rowIdx * 2 ? "bg-blue-700 text-white rounded px-2" : "px-2"}>
+                      {moves[rowIdx * 2]}
+                    </td>
+                    <td className={moveIndex === rowIdx * 2 + 1 ? "bg-blue-700 text-white rounded px-2" : "px-2"}>
+                      {moves[rowIdx * 2 + 1]}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         
         {/* animate the chess game */}
         <div className="flex flex-col mb-3">

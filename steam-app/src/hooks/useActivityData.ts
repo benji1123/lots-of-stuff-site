@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { ActivityEntry } from '../data/types';
 import { mapSteam, mapStrava } from '../data/mappers';
 
-export function useActivityData() {
+export function useActivityData(numDays: number) {
   const [data, setData] = useState<Record<string, ActivityEntry[]>>({});
 
   useEffect(() => {
-    fetch('/api/activity?days=10')
+    fetch(`/api/activity?days=${numDays}`)
       .then(res => res.json())
       .then(raw => {
         const mapped: Record<string, ActivityEntry[]> = {};

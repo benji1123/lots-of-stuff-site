@@ -58,7 +58,7 @@ export default function RecentCansGrid() {
           {cans.map((can, i) => (
             <div
               key={i}
-              className=" w-[60px] text-orange-100 rounded p-1 text-center text-xs relative group"
+              className="w-[80px] text-orange-100 rounded p-1 text-center text-xs relative group"
               onMouseEnter={() => setHovered(can.name)}
               onMouseLeave={() => setHovered(null)}
             >
