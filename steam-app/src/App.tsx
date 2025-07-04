@@ -67,6 +67,7 @@ export default function App() {
           <RecentInstagramPosts />
         </div>
       </div>
+      <Garden numPlants={Math.min(20, Math.floor(window.innerWidth/120))} />
     </main>
   );
 }
