@@ -1,85 +1,95 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-type Props = {
-  days: number;
-  potColor: string;
-  plantColor: string;
-};
+export default function Plant({ days = 5 }: { days: number }) {
+  const [leafColor, setLeafColor] = useState('#22c55e');
 
-export default function DigitalPlant({ days, potColor, plantColor }: Props) {
-  const [daysElapsed, setDaysElapsed] = useState(days);
+  useEffect(() => {
+    const shades = [
+      '#22c55e', '#16a34a', '#4ade80', // greens
+      '#3b82f6', '#2563eb', '#60a5fa', // blues
+      '#ef4444', '#dc2626', '#f87171'  // reds
+    ];
+    setLeafColor(shades[Math.floor(Math.random() * shades.length)]);
+  }, []);
 
-  //   useEffect(() => {
-  //     async function fetchStartDate() {
-  //       const res = await fetch('/api/plant');
-  //       const data = await res.json();
+  const stemX = 50;
+  const stemBottomY = 92;
+  const stemTopY = stemBottomY - days * 6;
 
-  //       const start = new Date(data.startDate);
-  //       const today = new Date();
-  //       const days = Math.floor((today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-  //       setDaysElapsed(days);
-  //     }
+  const stem = (
+    <line
+      x1={stemX}
+      y1={stemBottomY}
+      x2={stemX}
+      y2={stemTopY}
+      stroke="#10b981"
+      strokeWidth="2"
+    />
+  );
 
-  //     fetchStartDate();
-  //   }, []);
-
-  // Map days to number of leaves (1 leaf per 2 days, max 8 leaves)
-  const leafCount = Math.min(Math.floor(daysElapsed / 2), 16);
-
-  // Define stem top and bottom Y-coordinates based on number of leaves
-  const stemBottomY = 90;
-  const stemTopY = 100 - 20 - leafCount * 5;
-
-  // Generate leaf elements (alternating left/right, spaced evenly)
-  const leaves = Array.from({ length: leafCount }, (_, i) => {
-  const y = stemBottomY - i * 5;
+  // Generate branches with leaves
+  const branches = Array.from({ length: days }, (_, i) => {
+  const y = stemBottomY - i * 6 - 4;
   const isLeft = i % 2 === 0;
-  const x = isLeft ? 45 : 55;
+  const direction = isLeft ? -1 : 1;
+  const x1 = stemX;
+  const x2 = stemX + direction * 12;
+  const y2 = y - 6;
 
-  // Random angle between -45 and -15 for left, 15 to 45 for right
-  const angle = isLeft
-    ? -Math.floor(Math.random() * 45) // 0 to -45
-    : Math.floor(Math.random() * 45); // 0 to 45
+  const controlX = stemX + direction * 6;
+  const controlY = y - 2;
+
+  // Thicker branches near the base
+  const strokeWidth = 2.5 - i * 0.1;
 
   return (
-    <ellipse
-      key={i}
-      cx={x}
-      cy={y}
-      rx="4"
-      ry="2"
-      fill={plantColor}
-      transform={`rotate(${angle}, ${x}, ${y})`}
-    />
+    <g key={i}>
+      {/* Curved branch using quadratic Bezier path */}
+      <path
+        d={`M ${x1},${y} Q ${controlX},${controlY} ${x2},${y2}`}
+        fill="none"
+        stroke="#15803d"
+        strokeWidth={strokeWidth}
+      />
+
+      {/* Leaf at branch tip */}
+      <ellipse
+        cx={x2}
+        cy={y2}
+        rx="3"
+        ry="1.5"
+        fill={leafColor}
+        transform={`rotate(${Math.random() * 30 * direction}, ${x2}, ${y2})`}
+      />
+    </g>
   );
 });
 
+  // Bowl at the base
+  const bowl = (
+  <g className="bowl-animation">
+    {/* Bowl base */}
+    <ellipse cx="50" cy="95" rx="16" ry="8" fill="#6B21A8" /> {/* Purple bowl */}
+
+    {/* Rim (on top of soil for depth) */}
+    <ellipse cx="50" cy="92" rx="16" ry="4" fill="#9333EA" /> {/* Lighter purple rim */}
+
+    {/* Soil (darker ellipse just under rim) */}
+    <ellipse cx="50" cy="92" rx="15" ry="3.5" fill="#3b2f2f" /> {/* Dark soil */}
+  </g>
+);
+
   return (
-    <div className="w-32 h-32">
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        {/* Stem */}
-        <line
-          x1="50"
-          y1={stemBottomY}
-          x2="50"
-          y2={stemTopY}
-          stroke={'#16a34a'}
-          strokeWidth="4"
-        />
-
-        {/* Leaves */}
-        {leaves}
-
-        {/* Soil */}
-        <g>
-          {/* Bowl base (darker, back layer) */}
-          <ellipse cx="50" cy="95" rx="16" ry="8" fill="#99433B" />
-
-          {/* Bowl rim (lighter, front layer) */}
-          <ellipse cx="50" cy="92" rx="16" ry="4" fill="#E2725B" />
-        </g>
-        {/* <rect x="30" y="90" width="40" height="10" fill={potColor} /> */}
-      </svg>
-    </div>
-  );
-}
+  <svg
+      viewBox="0 0 100 110"
+      width={100} // or use className="w-[100px]"
+      height={110}
+      className="mx-auto"
+    >
+    {/* Bowl rendered first (in the back) */}
+    {bowl}
+    {/* Plant stem and branches rendered after (on top) */}
+    {stem}
+    {branches}
+  </svg>
+);}

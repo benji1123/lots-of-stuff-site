@@ -7,8 +7,7 @@ type Props = {
 type PlantConfig = {
     id: number | string
     numLeafs: number;
-    plantColor: string;
-    potColor: string;
+    offset: number;
 }
 export default function Garden({ numPlants }: Props) {
   const leafColors = [
@@ -27,16 +26,17 @@ export default function Garden({ numPlants }: Props) {
   for (let i=0; i<numPlants; i++) {
     plantConfigs.push({
         id: i,
-        numLeafs: 3 + Math.floor(Math.random() * 40),
-        plantColor: leafColors[Math.floor(Math.random() * leafColors.length)],
-        potColor: leafColors[Math.floor(Math.random() * leafColors.length)]
+        numLeafs: 3 + Math.floor(Math.random() * 10),
+        offset: 0 // Math.floor(Math.random() * 300) - 10
     })
   }
 
   return (
-    <div className="flex items-end">
+    <div className="flex items-end gap-0">
       {plantConfigs.map(plant => (
-        <DigitalPlant key={plant.id} days={plant.numLeafs} plantColor={plant.plantColor} potColor={plant.potColor} />
+        <div style={{ margin: `0 0 0 ${plant.offset}px` }}>
+          <DigitalPlant key={plant.id} days={plant.numLeafs} />
+        </div>
       ))}
     </div>
   );
