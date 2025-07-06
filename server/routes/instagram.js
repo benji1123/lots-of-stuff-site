@@ -4,7 +4,6 @@ const router = express.Router()
 const cacheManager = require('../utils/cacheManager')
 const tokenManager = require('../utils/igTokenManager')
 
-const MAX_POSTS_FETCH = 10
 const CACHE_NAME_INSTAGAM = 'instagram'
 
 router.get('/api/instagram/posts', async (req, res) => {
@@ -22,7 +21,7 @@ router.get('/api/instagram/posts', async (req, res) => {
             params: {
                 fields: 'id,caption,media_type,media_url,thumbnail_url,timestamp,permalink',
                 access_token: accessToken,
-                limit: MAX_POSTS_FETCH
+                limit: req.query.limit
             }
         })
         // cache the response

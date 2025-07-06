@@ -6,6 +6,8 @@ type Can = {
   count: number;
 };
 
+const CAN_LIMIT = 15;
+
 export default function RecentCansGrid() {
   /**
    * Fetch can count
@@ -14,7 +16,7 @@ export default function RecentCansGrid() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/cans/recent?limit=9')
+    fetch(`/api/cans/recent?limit=${CAN_LIMIT}`)
       .then(res => res.json())
       .then(setCans)
       .catch(err => console.error('Failed to fetch cans:', err));

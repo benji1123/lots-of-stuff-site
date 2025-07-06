@@ -11,7 +11,7 @@ if (!fs.existsSync(SNAPSHOT_DIR)) fs.mkdirSync(SNAPSHOT_DIR);
 
 
 let currDate = getCurrentDate();
-currDate = "2025-07-03";
+// currDate = "2025-07-06";
 const snapshotFile = path.join(SNAPSHOT_DIR, `${currDate}.json`);
 
 /**
