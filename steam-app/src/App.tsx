@@ -18,6 +18,9 @@ const MAX_PLANTS_TOP = 4;
 const MAX_PLANTS_BOTTOM = 4;
 const PLANT_WIDTH = 120;
 
+// instagram
+const POST_LIMIT=4;
+
 // styles
 const tileBgrnd = "rgba(18, 18, 18, 0.4)"
 
@@ -66,12 +69,21 @@ export default function App() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto] gap-x-[1em] gap-y-[2em] w-fit">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto_auto] gap-x-[1em] gap-y-[2em] w-fit">
         <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
-          <RecentInstagramPosts accountAlias="SPEAKEASY" postLimit={4}/>
+          <RecentInstagramPosts accountAlias="SPEAKEASY" postLimit={POST_LIMIT}/>
         </div>
+
         <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
-          <RecentInstagramPosts accountAlias="CAFE" postLimit={4}/>
+          <RecentInstagramPosts accountAlias="DRAW" postLimit={POST_LIMIT}/>
+        </div>
+
+        <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+          <RecentInstagramPosts accountAlias="CAFE" postLimit={POST_LIMIT}/>
+        </div>
+
+        <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+          <RecentInstagramPosts accountAlias="FOOD" postLimit={POST_LIMIT}/>
         </div>
       </div>
     </main>
