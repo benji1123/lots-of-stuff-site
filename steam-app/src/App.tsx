@@ -68,7 +68,10 @@ export default function App() {
 
       <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto] gap-x-[1em] gap-y-[2em] w-fit">
         <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
-          <RecentInstagramPosts postLimit={4}/>
+          <RecentInstagramPosts accountAlias="SPEAKEASY" postLimit={4}/>
+        </div>
+        <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+          <RecentInstagramPosts accountAlias="CAFE" postLimit={4}/>
         </div>
       </div>
     </main>

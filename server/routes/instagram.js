@@ -4,12 +4,18 @@ const router = express.Router()
 const cacheManager = require('../utils/cacheManager')
 const tokenManager = require('../utils/igTokenManager')
 
-const CACHE_NAME_INSTAGAM = 'instagram'
+const IG_CACHE_PREFIX = 'instagram_'
 
 router.get('/api/instagram/posts', async (req, res) => {
     try {
         // check if response is cached
-        const cached = cacheManager.loadCache(CACHE_NAME_INSTAGAM)
+        const accountAlias = req.query.account;
+        const cacheKKey = IG_CACHE_PREFIX + accountAlias;
+        if (!accountAlias) {
+            res.status(500).json({ error: '`account` query param missing' })
+            return;
+        }
+        const cached = cacheManager.loadCache(cacheKKey)
         if (cached) {
             console.log('returning IG posts from cache')
             res.json(cached);
@@ -17,7 +23,7 @@ router.get('/api/instagram/posts', async (req, res) => {
         }
         const limit = req.query.limit || 4;
         console.log('[instagram] cache is null or expired - fetching from Instagram API...')
-        const accessToken = await tokenManager.getAccessToken()
+        const accessToken = await tokenManager.getAccessToken(accountAlias)
         const { data } = await axios.get('https://graph.instagram.com/me/media', {
             params: {
                 fields: 'id,caption,media_type,media_url,thumbnail_url,timestamp,permalink',
@@ -27,7 +33,7 @@ router.get('/api/instagram/posts', async (req, res) => {
         })
         const posts = data.data.slice(0, limit)
         // cache the response
-        cacheManager.saveCache(CACHE_NAME_INSTAGAM, posts)
+        cacheManager.saveCache(cacheKKey, posts)
         res.json(posts)
     } catch (error) {
         console.log('Error fetching instagram posts: ', error.message)
