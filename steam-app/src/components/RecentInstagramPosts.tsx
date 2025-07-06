@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+type Props = {
+    postLimit: number;
+}
+
 type InstagramPost = {
     id: string;
     caption: string;
@@ -9,14 +13,13 @@ type InstagramPost = {
     permalink: string;
 }
 
-const POST_LIMIT = 8;
-
-export default function RecentInstagramPosts() {
+export default function RecentInstagramPosts({ postLimit }: Props) {
     const [posts, setPosts] = useState<InstagramPost[]>([])
 
     useEffect(() => {
-        fetch(`/api/instagram/posts?limit=${POST_LIMIT}`)
+        fetch(`/api/instagram/posts?limit=${postLimit}`)
             .then(res => res.json())
+            .then(res => res.slice(0, postLimit))
             .then(setPosts)
             .catch(err => console.log('failed to fetch IG posts: ', err))
     }, []);
@@ -25,7 +28,7 @@ export default function RecentInstagramPosts() {
         // small screens: 1-col
         // medium screens: 4-cols
         // large screens: 8-cols
-        <div className={`ig-posts grid grid-cols-2 md:grid-cols-4 lg:grid-cols-${POST_LIMIT}  gap-[1em] items-end text-white font-mono`}>
+        <div className={`ig-posts grid grid-cols-2  gap-[1em] items-end text-white font-mono`}>
             {posts.map((post, i) => (
                 <div key={i} className='text-xs max-w-[150px]'>
                     <a href={post.permalink} target="_blank">

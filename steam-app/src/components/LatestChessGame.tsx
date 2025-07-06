@@ -5,7 +5,7 @@ import { CHESS_COM_API_HEADERS, DEFAULT_CHESS_GAME } from '../constants';
 import Icon from './Icon';
 
 const USERNAME = 'xsimplybenx'; // Replace with your Chess.com username
-const MOVE_SPEED_MS = 100; // Speed of move animation in milliseconds
+const MOVE_SPEED_MS = 300; // Speed of move animation in milliseconds
 
 type GameInfo = {
   url: string;

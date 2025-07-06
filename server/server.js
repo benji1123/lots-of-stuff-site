@@ -98,7 +98,7 @@ app.get("/api/activity", (req, res) => {
       ...
     ]
  */
-const MAX_CANS = 30;
+const DEFAULT_CAN_COUNT = 30;
 app.get("/api/cans/recent", (req, res) => {
   if (!fs.existsSync(CANS_FILE_PATH)) {
     return res.status(404).json({ error: "Can data file not found" });
@@ -110,7 +110,7 @@ app.get("/api/cans/recent", (req, res) => {
     const cans = canData.counts || [];
 
     // Get the limit from the query string, default to 10, max 20
-    const limit = Math.min(parseInt(req.query.limit) || 10, MAX_CANS);
+    const limit = req.query.limit || DEFAULT_CAN_COUNT;
 
     // Return newest first
     const recentCans = cans.slice(-limit);

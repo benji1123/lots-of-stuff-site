@@ -6,7 +6,6 @@ import RecentInstagramPosts from "./components/RecentInstagramPosts";
 import GitHubCommits from "./components/RecentCommits";
 import { useActivityData } from "./hooks/useActivityData";
 import Garden from "./components/Garden";
-import DigitalPlant from "./components/Plant";
 
 // chess constants
 const CHESS_COM_USERNAME = "xsimplybenx";
@@ -19,11 +18,14 @@ const MAX_PLANTS_TOP = 4;
 const MAX_PLANTS_BOTTOM = 4;
 const PLANT_WIDTH = 120;
 
+// styles
+const tileBgrnd = "rgba(18, 18, 18, 0.4)"
+
 export default function App() {
   const data = useActivityData(NUM_DAYS_IN_FEED);
 
   return (
-    <main className="p-[0em] flex flex-col gap-3">
+    <main className="p-[2em] flex flex-col gap-3">
 
       {/* Grid - feed, chess, cans, and github */}
       <div className="relative w-fit">
@@ -42,31 +44,31 @@ export default function App() {
             2xl:grid-cols-[auto_auto_auto_auto_auto]
             gap-x-3 gap-y-[1em] w-fit"
         >
-          <div className="w-fit bg-[#121212] rounded-lg p-[1em]">
+          <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
             <ActivityFeed data={data} />
               <Garden
                 numPlants={1}
               />
           </div>
 
-          <div className="w-fit bg-[#141414] rounded-lg p-[1em]">
+          <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
             <RecentChessGame />
             <ChessProfile username={CHESS_COM_USERNAME} />
           </div>
 
-          <div className="w-fit bg-[#141414] rounded-lg p-[1em]">
+          <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
             <RecentCansGrid />
           </div>
 
-          <div className="w-fit bg-[#141414] rounded-lg p-[1em]">
+          <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
             <GitHubCommits />
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto] gap-x-[1em] gap-y-[2em] w-fit">
-        <div className="w-fit bg-[#141414] rounded-lg p-[1em]">
-          <RecentInstagramPosts />
+        <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+          <RecentInstagramPosts postLimit={4}/>
         </div>
       </div>
     </main>
