@@ -6,6 +6,7 @@ import RecentInstagramPosts from "./components/RecentInstagramPosts";
 import GitHubCommits from "./components/RecentCommits";
 import { useActivityData } from "./hooks/useActivityData";
 import Garden from "./components/Garden";
+import StatusBar from "./components/StatusBar";
 
 // chess constants
 const CHESS_COM_USERNAME = "xsimplybenx";
@@ -22,13 +23,14 @@ const PLANT_WIDTH = 120;
 const POST_LIMIT=4;
 
 // styles
-const tileBgrnd = "rgba(18, 18, 18, 0.4)"
+const tileBgrnd = "rgba(18, 18, 18, 0.2)"
 
 export default function App() {
   const data = useActivityData(NUM_DAYS_IN_FEED);
 
   return (
     <main className="p-[2em] flex flex-col gap-3">
+      <StatusBar />
 
       {/* Grid - feed, chess, cans, and github */}
       <div className="relative w-fit">

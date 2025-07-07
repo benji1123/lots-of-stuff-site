@@ -8,7 +8,7 @@ export default function ActivityBubble({ entry }: { entry: ActivityEntry }) {
     <div className="activity-bubble text-xs flex items-center rounded-2xl max-w-[20em] ">
       <div className="items-center space-x-1" style={{ color: 'gray' }}>
         {/* <span className="">[{entry.source}]</span> */}
-        <span className="metric text-gray-300 font-bold">
+        <span className="metric text-gray-400 font-bold">
           {entry.metric}
         </span>
         <span className="emoji">{emoji}</span>

@@ -27,7 +27,7 @@ export default function GitHubCommits() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="text-white font-mono text-xs max-w-[20em] max-h-[55em] overflow-y-auto hide-scrollbar">
+    <div className="font-mono text-xs max-w-[20em] max-h-[55em] overflow-y-auto hide-scrollbar">
       <ul className="space-y-[0.5em]">
         <Icon imageUrl='https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000'/>
         {commits.map((commit) => (

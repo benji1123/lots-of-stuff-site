@@ -80,7 +80,7 @@ export default function AnimatedChessGame() {
     return () => clearTimeout(timer);
   }, [moves, moveIndex, currentFen]);
 
-  if (!gameInfo) return <div className="font-mono text-white text-xs p-[1em]">Loading chess game...</div>;
+  if (!gameInfo) return <div className="font-mono text-xs p-[1em]">Loading chess game...</div>;
 
   const endDate = new Date(gameInfo.end_time * 1000).toLocaleString([], {
     timeZone: 'America/Vancouver',
@@ -96,7 +96,7 @@ export default function AnimatedChessGame() {
   const blackStyles = RESULT_STYLES[gameInfo.black.result] || DEFAULT_STYLE;
 
   return (
-    <div className="max-w-2xl mx-auto text-white rounded-lg">
+    <div className="max-w-2xl mx-auto rounded-lg">
       <div className="flex flex-row gap-6">
         {/* print moves (anchor scroll at bottom of container via flex and flex-col-reverse
             https://dev.to/hugaidas/anchor-scroll-at-the-bottom-of-the-container-with-dynamic-content-2knj) */}
@@ -111,10 +111,10 @@ export default function AnimatedChessGame() {
                 {Array.from({ length: Math.ceil(moveIndex / 2) }, (_, rowIdx) => (
                   <tr key={rowIdx}>
                     <td className="pr-2 text-gray-400">{rowIdx + 1}.</td>
-                    <td className={moveIndex === rowIdx * 2 ? "bg-blue-700 text-white rounded px-2" : "px-2"}>
+                    <td className={moveIndex === rowIdx * 2 ? "bg-blue-700 rounded px-2" : "px-2"}>
                       {moves[rowIdx * 2]}
                     </td>
-                    <td className={moveIndex === rowIdx * 2 + 1 ? "bg-blue-700 text-white rounded px-2" : "px-2"}>
+                    <td className={moveIndex === rowIdx * 2 + 1 ? "bg-blue-700 rounded px-2" : "px-2"}>
                       {moves[rowIdx * 2 + 1]}
                     </td>
                   </tr>
@@ -158,7 +158,7 @@ export default function AnimatedChessGame() {
               {' '}({gameInfo.black.rating}) {blackStyles.emoji}
             </div>
             <div>
-              <span className="text-gray-400"></span>{endDate} <a href={gameInfo.url} target="_blank" className="text-blue-400">(see game)</a>
+              {endDate} <a href={gameInfo.url} target="_blank" className="text-blue-400">(see game)</a>
             </div>
           </div>
     </div>

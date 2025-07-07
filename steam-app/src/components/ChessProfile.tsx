@@ -55,7 +55,7 @@ export default function ChessProfile({ username }: Props) {
     }
 
     return (
-        <div className="flex flex-col text-xs font-mono p-2 text-white text-xs">
+        <div className="flex flex-col text-xs font-mono p-2 text-xs">
             {profile.avatar && (
                 <img
                     src={profile.avatar}
