@@ -51,7 +51,6 @@ export default function AnimatedChessGame() {
       if (allGames.length > 0) {
         const game = allGames[allGames.length - 1];
         const chess = new Chess();
-        console.log(game.pgn)
         chess.loadPgn(game.pgn);
         setMoves(chess.history());
         setGameInfo(game);

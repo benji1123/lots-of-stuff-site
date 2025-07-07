@@ -34,8 +34,8 @@ export default function Garden({ numPlants }: Props) {
   return (
     <div className="flex items-end gap-0">
       {plantConfigs.map(plant => (
-        <div style={{ margin: `0 0 0 ${plant.offset}px` }}>
-          <DigitalPlant key={plant.id} days={plant.numLeafs} />
+        <div key={plant.id} style={{ margin: `0 0 0 ${plant.offset}px` }}>
+          <DigitalPlant days={plant.numLeafs} />
         </div>
       ))}
     </div>
