@@ -39,6 +39,11 @@
       "name": "UCC",
       "count": 3,
       "image": "https://api.ben-feed.cc/static/cans/ucc-classic.png"
+    },
+    {
+      "name": "CocaCola",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/cocacola.png"
     }
   ]
 }
