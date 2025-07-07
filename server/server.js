@@ -14,6 +14,18 @@ const SNAPSHOTS_DIR = path.join("../data/snapshots");
 // put this before routes to suppost JSON in request bodies
 app.use(express.json());
 
+// log where hits are coming from in case sus stuff
+app.use((req, res, next) => {
+  const origin = req.header('Origin'); 
+  // Or: const origin = req.get('Origin');
+  if (origin) {
+    console.log(`Request Origin: ${origin}`);
+  } else {
+    console.log('Request Origin: Not specified (same-origin or direct access)');
+  }
+  next(); // Pass the request to the next middleware or route handler
+});
+
 // routes in external files
 app.use(instagramRoutes)
 app.use(githubRoutes)
