@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 import { CHESS_COM_API_HEADERS, DEFAULT_CHESS_GAME } from '../constants';
-import Icon from './Icon';
 
 const USERNAME = 'xsimplybenx'; // Replace with your Chess.com username
-const MOVE_SPEED_MS = 300; // Speed of move animation in milliseconds
+const MOVE_SPEED_MS = 3000; // Speed of move animation in milliseconds
 
 type GameInfo = {
   url: string;
@@ -24,7 +23,7 @@ type PlayerInfo = {
 };
 
 const INITIAL_BOARD_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-const BOARD_WIDTH = 350; // Width of the chessboard in pixels
+const BOARD_WIDTH = 300; // Width of the chessboard in pixels
 
 // initialize a placeholder game since chess.com api is unreliable
 // once my game is fetched, it will replace the placeholder
@@ -101,9 +100,10 @@ export default function AnimatedChessGame() {
       <div className="flex flex-row gap-6">
         {/* print moves (anchor scroll at bottom of container via flex and flex-col-reverse
             https://dev.to/hugaidas/anchor-scroll-at-the-bottom-of-the-container-with-dynamic-content-2knj) */}
+          {/* set max-height to board width (pixels) because scoresheet should be flush with chessboard*/}
           <div
             id="scoresheet"
-            className={`flex flex-col-reverse min-w-[15em] max-h-[${BOARD_WIDTH}px] bg-[#000000] p-[1em]
+            className={`flex flex-col-reverse min-w-[15em] max-h-[300px] bg-[#000000] p-[1em]
                         rounded-xl text-xs font-mono flex-1 overflow-y-auto hide-scrollbar`}
           >
             <table>
