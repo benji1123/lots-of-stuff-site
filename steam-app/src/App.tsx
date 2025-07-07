@@ -64,24 +64,25 @@ export default function App() {
           </div>
 
           <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+            <RecentInstagramPosts accountAlias="GRASS" postLimit={POST_LIMIT}/>
+          </div>
+
+          <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
             <GitHubCommits />
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto_auto] gap-x-[1em] gap-y-[2em] w-fit">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto_auto_auto] gap-x-[1em] gap-y-[2em] w-fit">
         <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
           <RecentInstagramPosts accountAlias="SPEAKEASY" postLimit={POST_LIMIT}/>
         </div>
-
-        <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
-          <RecentInstagramPosts accountAlias="DRAW" postLimit={POST_LIMIT}/>
-        </div>
-
         <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
           <RecentInstagramPosts accountAlias="CAFE" postLimit={POST_LIMIT}/>
         </div>
-
+        <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+          <RecentInstagramPosts accountAlias="DRAW" postLimit={6}/>
+        </div>
         <div className="w-fit rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
           <RecentInstagramPosts accountAlias="FOOD" postLimit={POST_LIMIT}/>
         </div>

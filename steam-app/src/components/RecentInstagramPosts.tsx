@@ -45,11 +45,16 @@ export default function RecentInstagramPosts({
       {posts.map((post, i) => (
         <div key={i} className="text-xs max-w-[150px]">
           <a href={post.permalink} target="_blank">
-            <img
-              src={post.media_url}
-              width={150}
-              className="rounded-lg mb-1 shadow-sm shadow-black/30"
-            ></img>
+            { (post.media_type == 'VIDEO') 
+                ? <video loop controls muted autoPlay width="320" className="rounded-lg w-full mb-1">
+                        <source src={post.media_url} type="video/mp4"/>
+                        Your browser does not support the video tag.
+                  </video>
+                : <img
+                    src={post.media_url}
+                    width={150}
+                    className="rounded-lg mb-1"/>
+            }
             <div>{post.timestamp.slice(0, 16)}</div>
             <div className="truncate mr-5">{getCaption(post)}</div>
           </a>
