@@ -3,23 +3,24 @@ import { useState, useEffect } from "react"
 export default function StatusBar() {
     const moonPhaseMap: Record<string, string> = {
         'new moon': '🌑',
-        'waxing cresent': '🌒',
+        'waxing crescent': '🌒',
         'first quarter': '🌓',
         'waxing gibbous': '🌔',
         'full moon': '🌕',
         'waning gibbous': '🌖',
         'last quarter': '🌗',
-        'waning cresent': '🌘'
+        'waning crescent': '🌘'
 
     }
-    const [moon, setMoon] = useState('waxing gibbous')
+    const [moon, setMoon] = useState('')
 
     const unixTimeNow = Date.now();
 
     useEffect(() => {
         fetch(`https://api.farmsense.net/v1/moonphases/?d=${unixTimeNow}`)
             .then(res => res.json())
-            .then(res => res[0].Phase)
+            .then(res => res[0].Phase.toLowerCase())
+            .then(setMoon)
             .then(res => console.log(`moon phase: ${res}`))
     }, [])
 
