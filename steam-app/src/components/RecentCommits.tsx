@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Icon from "./Icon";
 
-const MAX_COMMITS = 5;
+const MAX_COMMITS = 3;
 const SHA_LENGTH = 5;
 
 type Commit = {

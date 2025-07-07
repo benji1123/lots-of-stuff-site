@@ -13,25 +13,6 @@ const headers = {
   'User-Agent': 'benji1123'
 };
 
-router.get("/api/github/repos", async (req, res) => {
-  try {
-    const response = await axios.get(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos`,
-      {
-        headers,
-        params: {
-          per_page: 10,
-          sort: "updated",
-        },
-      }
-    );
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error fetching GitHub repos:", error.message);
-    res.status(500).json({ error: "Failed to fetch repos" });
-  }
-});
-
 router.get('/api/github/commits/', async (req, res) => {
   const { data: events } = await axios.get(
     `https://api.github.com/users/${GITHUB_USERNAME}/events`,

@@ -2,7 +2,8 @@
 This repo includes the data-snapshot jobs, server, and frontend for my can collection (i.e. sapporo), Steam, Strava, and other things.
 
 ## Web setup
-Everything runs locally on my PC. I have 2 locally-managed cloudflare tunnels, which took 30 minutes to setup and expose my webapp and server to the internet. It's odd that the frontend queries the backend through Cloudflare when they're both running on one PC, but eh
+The react-app runs locally on my PC and is tunneled to my domain (ben-feed.cc) through a cloudflare tunnel. This means the production-website you see is a mirror of the local application running on my PC. I wrote a server that authenticates with Instagram, Strava, Github, etc. to fetch my data. This server is exposed through another cloudflare tunnel.
+
 ```
   +---------------------+       +----------------------+       +-------------------+
   |   Internet User     |  -->  |  Cloudflare Edge     |  -->  |  Tunnel 1         |
@@ -93,9 +94,17 @@ See [Strava API documentation](https://developers.strava.com/docs/). I setup a s
 ```
 
 ## Server
-Uses Express. Serves the data and images.
+Manages authentication/tokens for querying data from Instagram, Strava, Github, etc.
+APIs:
+1. `GET https://api.ben-feed.cc/activity`
+1. `GET https://api.ben-feed.cc/cans/recent`
+1. `POST https://api.ben-feed.cc/cans/update`
+1. `GET https://api.ben-feed.cc/instagram/posts`
+1. `GET https://api.ben-feed.cc/github/commits/`
 
 ## Frontend
 A react webapp that uses vite and tailwind.
+Directly calls these APIs for data:
+1. Chess.com public api for my latest game
 
 ![](./demo.png)
