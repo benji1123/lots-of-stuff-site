@@ -9,7 +9,8 @@ export default defineConfig({
     },
     allowedHosts: [
       'localhost',  // Allow local development
-      'ben-feed.cc'
+      'ben-feed.cc',
+      'https://api.open-meteo.com/'
     ]
   },
 });
