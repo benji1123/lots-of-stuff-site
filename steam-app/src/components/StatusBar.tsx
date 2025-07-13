@@ -59,9 +59,9 @@ export default function StatusBar() {
             </StatusBarContainer>
 
             <StatusBarContainer>
-                <div>🌅 {dayData.sunrise}</div>
-                <div>🌇 {dayData.sunset}</div>
-                <div>🌆 {dayData.dusk}</div>
+                <div>🌅 {stripSeconds(dayData.sunrise)}</div>
+                <div>🌇 {stripSeconds(dayData.sunset)}</div>
+                <div>🌆 {stripSeconds(dayData.dusk)}</div>
             </StatusBarContainer>
             
             {/* weather */}
@@ -85,6 +85,26 @@ export default function StatusBar() {
     )
 }
 
+type StatusBarContainerProps = {
+  color?: string;
+  children: ReactNode;
+};
+
+function StatusBarContainer({ color = "bg-black/75", children }: StatusBarContainerProps) {
+  return (
+    <div className={`flex gap-[1em] text-xs md:text-sm whitespace-nowrap px-[1.5em] py-2 rounded-full text-gray-400 ${color}`}>
+      {children}
+    </div>
+  );
+}
+
+// Utility function to remove seconds from a time string like "5:17:02 AM"
+function stripSeconds(time: string) {
+  // Handles both 12h and 24h formats
+  // e.g. "5:17:02 AM" -> "5:17 AM", "17:17:02" -> "17:17"
+  return time.replace(/(\d{1,2}:\d{2}):\d{2}(\s*[AP]M)?/, "$1$2");
+}
+
 const degToCardinal = (degrees: number): string => {
   const cardinalDirections = [
     "N",
@@ -99,18 +119,4 @@ const degToCardinal = (degrees: number): string => {
   const degPerDirection = 360 / cardinalDirections.length;
   const index = Math.round(degrees / degPerDirection);
   return cardinalDirections[Math.min(index, cardinalDirections.length-1)];
-}
-
-
-type StatusBarContainerProps = {
-  color?: string;
-  children: ReactNode;
-};
-
-function StatusBarContainer({ color = "bg-black/85", children }: StatusBarContainerProps) {
-  return (
-    <div className={`flex gap-[1em] text-xs md:text-sm whitespace-nowrap px-[1.5em] py-2 rounded-full text-gray-400 ${color}`}>
-      {children}
-    </div>
-  );
 }

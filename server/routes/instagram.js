@@ -17,26 +17,29 @@ router.get('/api/instagram/posts', async (req, res) => {
         }
         const cached = cacheManager.loadCache(cacheKKey)
         if (cached) {
-            console.log('returning IG posts from cache')
+            // console.log(`returning IG posts from cache for ${cacheKKey}`)
             res.json(cached);
             return;
         }
         const limit = req.query.limit || 4;
-        console.log('[instagram] cache is null or expired - fetching from Instagram API...')
+        // console.log(`[instagram][${accountAlias}] cache is null or expired - fetching from Instagram API...`)
         const accessToken = await tokenManager.getAccessToken(accountAlias)
+        console.log(`[${accountAlias}] token: ${accessToken}`)
         const { data } = await axios.get('https://graph.instagram.com/me/media', {
             params: {
                 fields: 'id,caption,media_type,media_url,thumbnail_url,timestamp,permalink',
                 access_token: accessToken,
-                limit: req.query.limit
+                limit: limit
             }
         })
+        console.log('hello 2')
+        console.log(`[${accountAlias}] data: ${data}`)
         const posts = data.data.slice(0, limit)
         // cache the response
         cacheManager.saveCache(cacheKKey, posts)
         res.json(posts)
     } catch (error) {
-        console.log('Error fetching instagram posts: ', error.message)
+        // console.log(`[${req.query.account}] Error fetching instagram posts: `, error.message)
         res.status(500).json({ error: 'Failed to fetch instagram posts' })
     }
 })

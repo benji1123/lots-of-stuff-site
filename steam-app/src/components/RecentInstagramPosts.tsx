@@ -29,7 +29,10 @@ export default function RecentInstagramPosts({
 
   useEffect(() => {
     fetch(`/api/instagram/posts?account=${accountAlias}&limit=${postLimit}`)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(`IG fetch for alias ${accountAlias}: ${JSON.stringify(res.json)}`)
+        return res.json();
+      })
       .then((res) => res.slice(0, postLimit))
       .then(setPosts)
       .catch((err) => console.log("failed to fetch IG posts: ", err));

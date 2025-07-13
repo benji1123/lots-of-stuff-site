@@ -7,7 +7,7 @@
     },
     {
       "name": "Asahi",
-      "count": 10,
+      "count": 12,
       "image": "https://api.ben-feed.cc/static/cans/asahi.png"
     },
     {
@@ -44,6 +44,11 @@
       "name": "CocaCola",
       "count": 1,
       "image": "https://api.ben-feed.cc/static/cans/cocacola.png"
+    },
+    {
+      "name": "Itoen Jasmine",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/itoen-white.png"
     }
   ]
 }

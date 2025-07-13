@@ -9,9 +9,8 @@ const path = require("path");
 
 const CACHE_DIR = path.join(__dirname, "..", ".secrets");
 
-const TTL_MINUTES = 30;
 const TTL_HOURS = 24;
-const TTL_SECONDS = 60 * TTL_MINUTES * TTL_HOURS;
+const TTL_SECONDS = 60 * 60 * TTL_HOURS;
 
 function getCachePath(name) {
   return path.join(CACHE_DIR, `${name}_cache.json`);
@@ -21,7 +20,8 @@ function loadCache(jsonFilename) {
   const file = getCachePath(jsonFilename);
   if (!fs.existsSync(file)) return null;
   const data = JSON.parse(fs.readFileSync(file));
-  if (Date.now() - data.cachedAt > TTL_SECONDS * 1000) return null;
+  // if (Date.now() - data.cachedAt > TTL_SECONDS * 1000) return null;
+  // console.log(`cache has expired for ${jsonFilename}`)
   return data.payload;
 }
 

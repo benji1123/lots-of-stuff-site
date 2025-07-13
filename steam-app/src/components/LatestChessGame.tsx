@@ -135,10 +135,10 @@ export default function AnimatedChessGame() {
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)"
             }}
             customDarkSquareStyle={{
-              backgroundColor: "#141414"
+              backgroundColor: "rgba(55, 24, 128, 0.4)"
             }}
             customLightSquareStyle={{
-              backgroundColor: "#779952"
+              backgroundColor: "rgba(119, 153, 82, 0.9)"
             }}
           />
         </div>
