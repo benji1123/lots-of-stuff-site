@@ -5,6 +5,7 @@ const app = express();
 
 const instagramRoutes = require('./routes/instagram')
 const githubRoutes = require('./routes/github')
+const audioRoutes = require('./routes/audio')
 
 const PORT = 5000;
 
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 // routes in external files
 app.use(instagramRoutes)
 app.use(githubRoutes)
+app.use(audioRoutes)
 
 /**
  * Fetch the strava activities for the past N days (defaults to 7).

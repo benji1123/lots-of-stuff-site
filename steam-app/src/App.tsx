@@ -8,7 +8,6 @@ import { useActivityData } from "./hooks/useActivityData";
 import Garden from "./components/Garden";
 import StatusBar from "./components/StatusBar";
 import { ActivityEntry } from "./data/types";
-import { ReactNode } from "react";
 import ServingDish from "./components/ServingDish";
 
 // chess constants
@@ -19,8 +18,6 @@ const NUM_DAYS_IN_FEED = 10;
 
 // instagram
 const POST_LIMIT = 4;
-
-// styles
 
 
 export default function App() {
@@ -41,9 +38,7 @@ export default function App() {
             gap-x-6 gap-y-[1em] w-fit"
       >
         {/* Left column: RecentCansGrid */}
-        <ServingDish>
-          <RecentCansGrid />
-        </ServingDish>
+        <RecentCansGrid />
 
         {/* Right column: rest of the dashboard */}
         <div className="outermost-right-col flex flex-col gap-3">
@@ -90,7 +85,7 @@ function getRow1(data: Record<string, ActivityEntry[]>) {
 
 function getRow2() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto_auto_auto] gap-x-[1em] gap-y-[2em]">
+    <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto_auto_auto] gap-y-[2em] gap-x-3 w-fit">
       <ServingDish>
         <RecentInstagramPosts accountAlias="SPEAKEASY" postLimit={POST_LIMIT} />
       </ServingDish>
@@ -100,7 +95,7 @@ function getRow2() {
       </ServingDish>
 
       <ServingDish>
-        <RecentInstagramPosts accountAlias="DRAW" postLimit={6} />
+        <RecentInstagramPosts accountAlias="DRAW" postLimit={POST_LIMIT} />
       </ServingDish>
 
       <ServingDish>

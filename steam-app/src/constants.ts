@@ -27,3 +27,8 @@ export const DEFAULT_CHESS_GAME = {
     '@id': "player-uuid-2",
   },
 };
+
+// colors
+export const GLASS_COLOR = "rgba(168, 215, 231, 0.05)";
+export const GLASS_COLOR_DARKER = "rgba(142, 176, 187, 0.01)";
+export const TILE_BG = "rgba(18, 18, 18, 0.2)";

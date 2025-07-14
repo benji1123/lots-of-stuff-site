@@ -9,11 +9,13 @@
 body {
   font-family: sans-serif;
   background-color: black;
-  height: 100vh;
+  min-height: 100vh;
+  min-width: 100vh;
   background-color: black;
-  background: url(../public/DSC_6960.jpg);
-  backdrop-filter: blur(10px);
+  background: no-repeat url(../public/DSC_6960.jpg);
+  backdrop-filter: blur(10px) brightness(95%);
   background-size: cover;
+  background-attachment: fixed;
   color: #7e838b;
 }
 

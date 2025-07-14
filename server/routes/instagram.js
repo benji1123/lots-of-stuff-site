@@ -27,7 +27,7 @@ router.get('/api/instagram/posts', async (req, res) => {
         console.log(`[${accountAlias}] token: ${accessToken}`)
         const { data } = await axios.get('https://graph.instagram.com/me/media', {
             params: {
-                fields: 'id,caption,media_type,media_url,thumbnail_url,timestamp,permalink',
+                fields: 'id,caption,media_type,media_url,timestamp,permalink',
                 access_token: accessToken,
                 limit: limit
             }
@@ -40,7 +40,7 @@ router.get('/api/instagram/posts', async (req, res) => {
         res.json(posts)
     } catch (error) {
         // console.log(`[${req.query.account}] Error fetching instagram posts: `, error.message)
-        res.status(500).json({ error: 'Failed to fetch instagram posts' })
+        res.status(500).json({ error: `Failed to fetch instagram posts: ${JSON.stringify(error)}` })
     }
 })
 

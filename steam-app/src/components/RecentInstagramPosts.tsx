@@ -43,7 +43,7 @@ export default function RecentInstagramPosts({
     // medium screens: 4-cols
     // large screens: 8-cols
     <div
-      className={`ig-posts grid grid-cols-2  gap-[1em] items-end font-mono`}
+      className={`ig-posts grid grid-cols-2  gap-3 items-end font-mono`}
     >
       {posts.map((post, i) => (
         <div key={i} className="text-xs max-w-[150px]">

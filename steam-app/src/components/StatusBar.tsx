@@ -1,18 +1,43 @@
 import { useState, useEffect, ReactNode } from "react"
 import { OpenMeteoCurrentWeather } from "../data/types"
 
-export default function StatusBar() {
-    const moonPhaseMap: Record<string, string> = {
-        'new moon': '🌑',
-        'waxing crescent': '🌒',
-        'first quarter': '🌓',
-        'waxing gibbous': '🌔',
-        'full moon': '🌕',
-        'waning gibbous': '🌖',
-        'last quarter': '🌗',
-        'waning crescent': '🌘'
+const MUSIC_TOGGLE_ID = "music-toggle-btn";
+const MOON_PHASE_MAP: Record<string, string> = {
+    'new moon': '🌑',
+    'waxing crescent': '🌒',
+    'first quarter': '🌓',
+    'waxing gibbous': '🌔',
+    'full moon': '🌕',
+    'waning gibbous': '🌖',
+    'last quarter': '🌗',
+    'waning crescent': '🌘'
 
+}
+
+let RAIN_PATH = "./../public/rain.mp3";
+let STELLAR_BLADE_PATH = "https://api.ben-feed.cc/static/audio/stellarblade.mp3";
+let AUDIO = new Audio(STELLAR_BLADE_PATH);
+AUDIO.volume = 0.1;
+
+const toggleAudio = () => {
+    const element = document.getElementById(MUSIC_TOGGLE_ID);
+    if (AUDIO.paused) {
+        AUDIO.play()
+        if (element) element.textContent = '⏸️';
+    } else {
+        AUDIO.pause();
+        if (element) element.textContent = '▶️';
     }
+}
+
+export default function StatusBar() {
+    const [audioMetadata, setAudioMetadata] = useState({ title: "", artist: "", album: "" });
+    useEffect(() => {
+        fetch(`/api/audio-metadata/stellarblade.mp3`)
+            .then(res => res.json())
+            .then(setAudioMetadata)
+    }, []);
+
     const [moon, setMoon] = useState<any>({ Phase: '' })
     const[dayData, setDayData] = useState({ sunset: '', sunrise: '', dusk: '' })
     const [weather, setWeather] = useState<OpenMeteoCurrentWeather | any>({})
@@ -55,7 +80,7 @@ export default function StatusBar() {
         <div className="flex gap-[1em] px-[1.5em] h-[50px] w-viewport rounded-sm items-center text-md text-gray-400">
             {/* moon-phase and sunset/sunrise/dusk */}
             <StatusBarContainer>
-                <div>{moonPhaseMap[moon.Phase.toLowerCase()]} {moon.Phase.toLowerCase()}</div>
+                <div>{MOON_PHASE_MAP[moon.Phase.toLowerCase()]} {moon.Phase.toLowerCase()}</div>
             </StatusBarContainer>
 
             <StatusBarContainer>
@@ -79,6 +104,13 @@ export default function StatusBar() {
                 <div>
                     🌪️ {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m} {degToCardinal(weather?.current?.wind_direction_10m)}
                 </div>
+            </StatusBarContainer>
+
+            <StatusBarContainer>
+                <button id={MUSIC_TOGGLE_ID} onClick={toggleAudio}>▶️</button>
+                <span>
+                    {audioMetadata.title} {audioMetadata.artist && `- ${audioMetadata.artist}`}
+                </span>
             </StatusBarContainer>
         </div>
         

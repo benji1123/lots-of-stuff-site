@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import ServingDish from './ServingDish';
+import { GLASS_COLOR } from '../constants';
 
 type Can = {
   name: string;
@@ -54,40 +56,34 @@ export default function RecentCansGrid() {
 
 
   return (
-    <div className="can-collection h-max">
-      <div className="rounded-2xl p-1">
-        <div className="grid grid-cols-3 gap-3 items-end">
-          {cans.map((can, i) => (
-            <div
-              key={i}
-              className="w-[80px] text-orange-100 rounded p-2 text-center text-xs relative group"
-              onMouseEnter={() => setHovered(can.name)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <div className="relative inline-block">
-                <img
-                  src={can.image}
-                  className="h-30 object-contain mb-1 block mx-auto"
-                  onClick = {() => updateCanCount(can.name, 1)}
-                />
-                <button className="can-count-badge text-[12px] mt-[1em] w-[30px] h-[18px] bg-[#779952] text-black font-bold rounded-full"
-                        onClick = {() => updateCanCount(can.name, -1)}>
-                  {can.count}
-                </button>
-              </div>
-            </div>
-          ))}
+      <div className="can-collection h-max rounded-2xl py-3 px-3 border-yellow-600/50 border-2 border-solid" style={{ background: GLASS_COLOR }}>
+        <div className="grid grid-cols-3 gap-[2em] md:gap-3 items-end w-fit">
+          {cans.map((can, i) =>  Can(can, i))}
         </div>
-        
-        {/* Fixed tooltip beside the grid */}
-        {/* <div
-          className={`fixed left-[250px] top-[2em] translate-y-1/2 px-3 py-2 bg-black text-white text-[1.5em] rounded shadow transition-opacity z-50 pointer-events-none w-max ${
-            hovered ? 'opacity-90' : 'opacity-0'
-          }`}
-        >
-          {hovered}
-        </div> */}
       </div>
-    </div>
   );
+
+  function Can(can: Can, i: number) {
+    return (
+      <div
+        key={i}
+        className="w-[80px] text-orange-100 rounded p-2 text-center opacity-90"
+        onMouseEnter={() => setHovered(can.name)}
+        onMouseLeave={() => setHovered(null)}
+      >
+        <div className="relative inline-block">
+          <img
+            src={can.image}
+            className="h-30 object-contain mb-1 block mx-auto"
+            onClick = {() => updateCanCount(can.name, 1)}
+          />
+          <button className="can-count-badge text-[12px] mt-[1em] w-[30px] h-[18px] bg-[#779952] text-black font-bold rounded-full"
+                  onClick = {() => updateCanCount(can.name, -1)}>
+            {can.count}
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
+

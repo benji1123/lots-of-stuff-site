@@ -20,8 +20,8 @@ function loadCache(jsonFilename) {
   const file = getCachePath(jsonFilename);
   if (!fs.existsSync(file)) return null;
   const data = JSON.parse(fs.readFileSync(file));
-  // if (Date.now() - data.cachedAt > TTL_SECONDS * 1000) return null;
-  // console.log(`cache has expired for ${jsonFilename}`)
+  if (Date.now() - data.cachedAt > TTL_SECONDS * 1000) return null;
+  console.log(`cache has expired for ${jsonFilename}`)
   return data.payload;
 }
 

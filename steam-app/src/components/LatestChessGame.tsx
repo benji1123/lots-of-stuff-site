@@ -79,7 +79,7 @@ export default function AnimatedChessGame() {
     return () => clearTimeout(timer);
   }, [moves, moveIndex, currentFen]);
 
-  if (!gameInfo) return <div className="font-mono text-sm p-[1em]">Loading chess game...</div>;
+  if (!gameInfo) return <div className="font-mono text-sm p-[1em] h-fit">Loading chess game...</div>;
 
   const endDate = new Date(gameInfo.end_time * 1000).toLocaleString([], {
     timeZone: 'America/Vancouver',
@@ -95,7 +95,7 @@ export default function AnimatedChessGame() {
   const blackStyles = RESULT_STYLES[gameInfo.black.result] || DEFAULT_STYLE;
 
   return (
-    <div className="max-w-2xl mx-auto rounded-lg">
+    <div className="mx-auto rounded-lg">
       <div className="flex flex-row gap-6">
         {/* print moves (anchor scroll at bottom of container via flex and flex-col-reverse
             https://dev.to/hugaidas/anchor-scroll-at-the-bottom-of-the-container-with-dynamic-content-2knj) */}
