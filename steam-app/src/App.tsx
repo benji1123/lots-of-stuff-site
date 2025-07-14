@@ -9,6 +9,7 @@ import Garden from "./components/Garden";
 import StatusBar from "./components/StatusBar";
 import { ActivityEntry } from "./data/types";
 import { ReactNode } from "react";
+import ServingDish from "./components/ServingDish";
 
 // chess constants
 const CHESS_COM_USERNAME = "xsimplybenx";
@@ -20,7 +21,7 @@ const NUM_DAYS_IN_FEED = 10;
 const POST_LIMIT = 4;
 
 // styles
-const tileBgrnd = "rgba(18, 18, 18, 0.2)";
+
 
 export default function App() {
   const data = useActivityData(NUM_DAYS_IN_FEED);
@@ -40,12 +41,9 @@ export default function App() {
             gap-x-6 gap-y-[1em] w-fit"
       >
         {/* Left column: RecentCansGrid */}
-        <div
-          className="outermost-left-col rounded-lg p-[1em]"
-          style={{ background: tileBgrnd }}
-        >
+        <ServingDish>
           <RecentCansGrid />
-        </div>
+        </ServingDish>
 
         {/* Right column: rest of the dashboard */}
         <div className="outermost-right-col flex flex-col gap-3">
@@ -69,23 +67,23 @@ function getRow1(data: Record<string, ActivityEntry[]>) {
                 2xl:grid-cols-[auto_auto_auto_auto_auto]
                 gap-x-3 gap-y-[1em] items-end"
     >
-      <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+      <ServingDish>
         <ActivityFeed data={data} />
         <Garden numPlants={2} />
-      </div>
+      </ServingDish>
 
-      <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+      <ServingDish>
         <RecentChessGame />
         <ChessProfile username={CHESS_COM_USERNAME} />
-      </div>
+      </ServingDish>
 
-      <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+      <ServingDish>
         <RecentInstagramPosts accountAlias="GRASS" postLimit={POST_LIMIT} />
-      </div>
+      </ServingDish>
 
-      <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+      <ServingDish>
         <GitHubCommits />
-      </div>
+      </ServingDish>
     </div>
   );
 }
@@ -93,21 +91,21 @@ function getRow1(data: Record<string, ActivityEntry[]>) {
 function getRow2() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto_auto_auto] gap-x-[1em] gap-y-[2em]">
-      <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+      <ServingDish>
         <RecentInstagramPosts accountAlias="SPEAKEASY" postLimit={POST_LIMIT} />
-      </div>
+      </ServingDish>
 
-      <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+      <ServingDish>
         <RecentInstagramPosts accountAlias="CAFE" postLimit={POST_LIMIT} />
-      </div>
+      </ServingDish>
 
-      <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+      <ServingDish>
         <RecentInstagramPosts accountAlias="DRAW" postLimit={6} />
-      </div>
+      </ServingDish>
 
-      <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
+      <ServingDish>
         <RecentInstagramPosts accountAlias="FOOD" postLimit={POST_LIMIT} />
-      </div>
+      </ServingDish>
     </div>
   );
 }
