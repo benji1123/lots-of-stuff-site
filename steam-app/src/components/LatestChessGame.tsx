@@ -23,7 +23,7 @@ type PlayerInfo = {
 };
 
 const INITIAL_BOARD_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-const BOARD_WIDTH = 300; // Width of the chessboard in pixels
+const BOARD_WIDTH = 350; // Width of the chessboard in pixels
 
 // initialize a placeholder game since chess.com api is unreliable
 // once my game is fetched, it will replace the placeholder
@@ -79,7 +79,7 @@ export default function AnimatedChessGame() {
     return () => clearTimeout(timer);
   }, [moves, moveIndex, currentFen]);
 
-  if (!gameInfo) return <div className="font-mono text-xs p-[1em]">Loading chess game...</div>;
+  if (!gameInfo) return <div className="font-mono text-sm p-[1em]">Loading chess game...</div>;
 
   const endDate = new Date(gameInfo.end_time * 1000).toLocaleString([], {
     timeZone: 'America/Vancouver',
@@ -102,8 +102,8 @@ export default function AnimatedChessGame() {
           {/* set max-height to board width (pixels) because scoresheet should be flush with chessboard*/}
           <div
             id="scoresheet"
-            className={`flex flex-col-reverse min-w-[15em] max-h-[300px] bg-[#000000] p-[1em]
-                        rounded-xl text-xs font-mono flex-1 overflow-y-auto hide-scrollbar`}
+            className={`flex flex-col-reverse min-w-[15em] max-h-[350px] bg-black/10 p-[1em]
+                        rounded-xl text-sm font-mono flex-1 overflow-y-auto hide-scrollbar`}
           >
             <table>
               <tbody>
@@ -135,17 +135,17 @@ export default function AnimatedChessGame() {
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)"
             }}
             customDarkSquareStyle={{
-              backgroundColor: "rgba(55, 24, 128, 0.4)"
+              backgroundColor: "#3D5E42"
             }}
             customLightSquareStyle={{
-              backgroundColor: "rgba(119, 153, 82, 0.9)"
+              backgroundColor: "#CF9D54"
             }}
           />
         </div>
       </div>
 
       {/* show the player names and results */}
-       <div className="text-xs font-mono my-2">
+       <div className="text-sm font-mono my-2">
             <div>
               <span className={`${whiteStyles.color}`}>White: </span>
               <a href={getProfileUrl(gameInfo.white.username)} target="_blank" className="text-blue-400">{gameInfo.white.username}</a>

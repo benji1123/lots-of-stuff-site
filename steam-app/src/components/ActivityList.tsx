@@ -14,7 +14,7 @@ export default function ActivityList({ date, entries }: Props) {
     entries.length == 0 ? <div></div> :
     <div className="activities-for-date">
       {/* Date heading */}
-      <div className="text-xs text-green-400 mt-4 mb-1">{date}</div>
+      <div className="text-sm text-green-400 mt-4 mb-1">{date}</div>
 
       {/* Feed-style activity messages */}
       <div>

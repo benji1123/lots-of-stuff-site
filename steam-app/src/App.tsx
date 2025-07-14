@@ -71,7 +71,7 @@ function getRow1(data: Record<string, ActivityEntry[]>) {
     >
       <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
         <ActivityFeed data={data} />
-        <Garden numPlants={1} />
+        <Garden numPlants={2} />
       </div>
 
       <div className="rounded-lg p-[1em]" style={{ background: tileBgrnd }}>
