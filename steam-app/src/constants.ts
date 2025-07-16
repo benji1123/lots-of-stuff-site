@@ -29,6 +29,7 @@ export const DEFAULT_CHESS_GAME = {
 };
 
 // colors
-export const GLASS_COLOR = "rgba(168, 215, 231, 0.05)";
-export const GLASS_COLOR_DARKER = "rgba(142, 176, 187, 0.01)";
+export const GLASS_COLOR = "rgba(168, 215, 231, 0.07)";
+export const GLASS_COLOR_DARKER = "rgba(234, 179, 8, 0.5)"; // "rgba(142, 176, 187, 0.01)";
+// export const  = "rgba(168, 215, 231, 0.05)";
 export const TILE_BG = "rgba(18, 18, 18, 0.2)";

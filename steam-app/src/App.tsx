@@ -38,7 +38,9 @@ export default function App() {
             gap-x-6 gap-y-[1em] w-fit"
       >
         {/* Left column: RecentCansGrid */}
-        <RecentCansGrid />
+        <ServingDish>
+          <RecentCansGrid />
+        </ServingDish>
 
         {/* Right column: rest of the dashboard */}
         <div className="outermost-right-col flex flex-col gap-3">

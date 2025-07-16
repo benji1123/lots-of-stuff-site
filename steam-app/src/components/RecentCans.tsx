@@ -56,7 +56,7 @@ export default function RecentCansGrid() {
 
 
   return (
-      <div className="can-collection h-max rounded-2xl py-3 px-3 border-yellow-600/50 border-2 border-solid" style={{ background: GLASS_COLOR }}>
+      <div className="can-collection w-fit h-max rounded-2xl py-3 px-3">
         <div className="grid grid-cols-3 gap-[2em] md:gap-3 items-end w-fit">
           {cans.map((can, i) =>  Can(can, i))}
         </div>

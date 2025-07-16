@@ -9,7 +9,7 @@ type Props = {
 export default function ServingDish({ children, color }: Props) {
     const bgColor = color || TILE_BG
     return (
-        <div className="rounded-lg p-[1em] border-[4px] border-solid w-fit" style={{ background: GLASS_COLOR, borderColor: GLASS_COLOR_DARKER }}>
+        <div className="rounded-3xl p-[1em] border-2 border-solid w-fit" style={{ background: GLASS_COLOR, borderColor: GLASS_COLOR_DARKER }}>
             { children }
         </div>
     )
