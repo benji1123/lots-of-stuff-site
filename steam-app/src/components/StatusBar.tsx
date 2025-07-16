@@ -77,7 +77,7 @@ export default function StatusBar() {
     }, [])
 
     return (
-        <div className="flex gap-[1em] px-[1.5em] h-[50px] w-viewport rounded-sm items-center text-md text-gray-400">
+        <div className="flex flex-wrap gap-[1em] px-[1.5em] mb-[2em] h-fit w-viewport text-md text-gray-400">
             {/* moon-phase and sunset/sunrise/dusk */}
             <StatusBarContainer>
                 <div>{MOON_PHASE_MAP[moon.Phase.toLowerCase()]} {moon.Phase.toLowerCase()}</div>

@@ -11,11 +11,10 @@ body {
   background-color: black;
   min-height: 100vh;
   min-width: 100vh;
-  background-color: black;
   background: no-repeat url(../public/DSC_6960.jpg);
   backdrop-filter: blur(10px) brightness(85%) contrast(110%);
-  background-size: cover;
   background-attachment: fixed;
+  background-size: cover;
   color: rgba(234, 179, 8, 1);
 }
 
