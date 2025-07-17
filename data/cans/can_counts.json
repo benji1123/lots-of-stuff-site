@@ -49,6 +49,11 @@
       "name": "Itoen Jasmine",
       "count": 1,
       "image": "https://api.ben-feed.cc/static/cans/itoen-white.png"
+    },
+    {
+      "name": "Cove Orange",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/cove.png"
     }
   ]
 }
