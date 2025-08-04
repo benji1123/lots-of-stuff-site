@@ -10,7 +10,8 @@ export default defineConfig({
     allowedHosts: [
       'localhost',  // Allow local development
       'ben-feed.cc',
-      'https://api.open-meteo.com/'
+      'https://api.open-meteo.com/',
+      'https://www.farmsense.net/'
     ]
   },
 });
