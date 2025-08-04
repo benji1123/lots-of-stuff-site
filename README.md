@@ -46,6 +46,9 @@ Pros
 Cons
 1. local changes are immediately shipped
 
+Tips
+1. Allowlisted `cloudflared` for both private and public firewalls
+
 I would normally host this on Heroku or run it on an EC2 instance. I like this tunneling approach because it is straightforward. Any syntax error will bring it down. 
 
 See https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/local-management/create-local-tunnel/ for setup.
@@ -106,5 +109,8 @@ APIs:
 A react webapp that uses vite and tailwind.
 Directly calls these APIs for data:
 1. Chess.com public api for my latest game
+1. `GET https://api.farmsense.net/v1/moonphases/?d=${unixTime}` (farmsense API for moon phase)
+1. `GET https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}` (for sunset/sunrise/dusk times)
+1. `GET https://api.open-meteo.com/v1` (open-meteo api for detailled weather)
 
 ![](./demo.png)
