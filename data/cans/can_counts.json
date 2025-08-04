@@ -22,7 +22,7 @@
     },
     {
       "name": "Heineken",
-      "count": 15,
+      "count": 14,
       "image": "https://api.ben-feed.cc/static/cans/heineken.png"
     },
     {
@@ -54,6 +54,16 @@
       "name": "Cove Orange",
       "count": 1,
       "image": "https://api.ben-feed.cc/static/cans/cove.png"
+    },
+    {
+      "name": "Slurpee",
+      "count": 2,
+      "image": "https://api.ben-feed.cc/static/cans/slurpee.png"
+    },
+    {
+      "name": "Morimiya",
+      "count": 1,
+      "image": "https://api.ben-feed.cc/static/cans/morimiya.png"
     }
   ]
 }

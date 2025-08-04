@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import ServingDish from './ServingDish';
-import { GLASS_COLOR } from '../constants';
 
 type Can = {
   name: string;
